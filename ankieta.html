@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ankieta Rekrutacyjna | TierOne Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0a0a0a',
+              graphite: '#1f1f1f',
+              lime: '#CCFF00'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Oswald', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body class="bg-brand-black text-white min-h-screen">
+  <div class="container mx-auto px-6 py-12">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <a href="./index.html" class="inline-block text-brand-lime hover:text-white transition-colors mb-6">
+          ← Powrót na stronę główną
+        </a>
+
+        <h1 class="font-heading text-4xl md:text-5xl font-bold mb-4 text-glow">
+          ANKIETA REKRUTACYJNA
+        </h1>
+
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+          Wypełnij krótką ankietę, aby umówić się na bezpłatną konsultację strategiczną.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form
+        id="recruitmentForm"
+        class="bg-brand-graphite border border-brand-lime/20 rounded-lg p-8 md:p-12"
+      >
+        <!-- Imię i Nazwisko -->
+        <div class="mb-6">
+          <label for="fullName" class="block text-sm font-semibold text-brand-lime mb-2">
+            Imię i Nazwisko *
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            placeholder="Jan Kowalski"
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg"
+          />
+        </div>
+
+        <!-- Telefon -->
+        <div class="mb-6">
+          <label for="phone" class="block text-sm font-semibold text-brand-lime mb-2">
+            Numer telefonu *
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+            placeholder="+48 123 456 789"
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-semibold text-brand-lime mb-2">
+            Email *
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="jan@example.com"
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg"
+          />
+        </div>
+
+        <!-- Cel współpracy -->
+        <div class="mb-6">
+          <label for="goal" class="block text-sm font-semibold text-brand-lime mb-2">
+            Cel współpracy *
+          </label>
+          <select
+            id="goal"
+            name="goal"
+            required
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
+          >
+            <option value="" disabled selected>Wybierz cel...</option>
+            <option value="zdrowie">Zdrowie i Longevity</option>
+            <option value="performance">Performance & Energia</option>
+            <option value="kariera">Kariera i Biznes</option>
+            <option value="ai">Produktywność AI</option>
+            <option value="kompleksowo">Transformacja kompleksowa</option>
+            <option value="inne">Inne</option>
+          </select>
+        </div>
+
+        <!-- Opis sytuacji -->
+        <div class="mb-8">
+          <label for="situation" class="block text-sm font-semibold text-brand-lime mb-2">
+            Krótki opis Twojej sytuacji *
+          </label>
+          <textarea
+            id="situation"
+            name="situation"
+            required
+            rows="6"
+            placeholder="Opisz w kilku zdaniach gdzie teraz jesteś i co chcesz osiągnąć..."
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg resize-none"
+          ></textarea>
+          <p class="text-sm text-gray-500 mt-2">
+            Min. 50 znaków
+          </p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="hidden mb-4 p-4 bg-red-900/20 border border-red-500 rounded-lg text-red-500 text-sm">
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="hidden mb-4 p-4 bg-green-900/20 border border-brand-lime rounded-lg text-brand-lime text-sm">
+          ✓ Ankieta wysłana! Odezwiemy się wkrótce.
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          id="submitBtn"
+          class="w-full btn-neon text-xl py-5 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span id="submitText">WYŚLIJ ANKIETĘ</span>
+        </button>
+
+        <p class="text-sm text-gray-500 text-center mt-4">
+          * Pola wymagane
+        </p>
+      </form>
+
+      <!-- Info Box -->
+      <div class="mt-12 bg-brand-graphite border border-brand-lime/20 rounded-lg p-6">
+        <h3 class="font-heading text-xl font-bold mb-3 text-brand-lime">
+          CO DALEJ?
+        </h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li class="flex items-start">
+            <span class="text-brand-lime mr-2">1.</span>
+            <span>Przeanalizujemy Twoją ankietę (24h)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-brand-lime mr-2">2.</span>
+            <span>Odezwiemy się telefonicznie lub mailem</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-brand-lime mr-2">3.</span>
+            <span>Umówimy bezpłatną konsultację strategiczną (30-60 min)</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('recruitmentForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Hide messages
+      errorMessage.classList.add('hidden');
+      successMessage.classList.add('hidden');
+
+      // Validate situation length
+      const situation = document.getElementById('situation').value;
+      if (situation.length < 50) {
+        errorMessage.textContent = 'Opis sytuacji musi mieć min. 50 znaków';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitText.textContent = 'WYSYŁAM...';
+
+      // Get form data
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        goal: document.getElementById('goal').value,
+        situation: situation,
+        source: 'Ankieta rekrutacyjna TierOne',
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        // Get Basin URL from localStorage (or use env var if available)
+        const basinUrl = 'https://usebasin.com/f/088e2f4f4dd2';
+
+        const response = await fetch(basinUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          // Success
+          successMessage.classList.remove('hidden');
+          form.reset();
+
+          // Scroll to success message
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Redirect after 3 seconds
+          setTimeout(() => {
+            window.location.href = './index.html';
+          }, 3000);
+        } else {
+          throw new Error('Failed to submit');
+        }
+
+      } catch (error) {
+        console.error('Błąd wysyłania:', error);
+        errorMessage.textContent = 'Wystąpił błąd. Spróbuj ponownie lub skontaktuj się bezpośrednio.';
+        errorMessage.classList.remove('hidden');
+
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitText.textContent = 'WYŚLIJ ANKIETĘ';
+      }
+    });
+  </script>
+</body>
+</html>
