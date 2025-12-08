@@ -6,6 +6,7 @@ import { Dumbbell, Brain, Cpu, Target, Zap, Shield } from 'lucide-react';
 const Hero = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [consentChecked, setConsentChecked] = useState(false);
 
   // Generate random particles
   const particles = Array.from({ length: 15 }, (_, i) => ({
@@ -111,6 +112,12 @@ const Hero = () => {
             e.preventDefault();
             const email = (e.target as any).email.value;
 
+            // Walidacja zgody RODO
+            if (!consentChecked) {
+              setError('Musisz wyrazić zgodę na przetwarzanie danych osobowych.');
+              return;
+            }
+
             setLoading(true);
             setError('');
 
@@ -169,11 +176,27 @@ const Hero = () => {
               {loading ? 'WYSYŁAM...' : 'ODBIERZ RAPORT'}
             </button>
           </div>
+
+          {/* RODO Consent Checkbox */}
+          <div className="mt-4 flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="consent"
+              checked={consentChecked}
+              onChange={(e) => setConsentChecked(e.target.checked)}
+              disabled={loading}
+              className="mt-1 w-5 h-5 bg-brand-graphite border-2 border-brand-lime/30 rounded focus:ring-brand-lime focus:ring-2 text-brand-lime cursor-pointer disabled:opacity-50"
+            />
+            <label htmlFor="consent" className="text-sm text-gray-400 leading-relaxed cursor-pointer">
+              Wyrażam zgodę na przetwarzanie moich danych osobowych (adres e-mail) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu wysyłki newslettera oraz materiałów edukacyjnych. Zapoznałem/am się z <a href="./privacy.html" target="_blank" className="text-brand-lime hover:underline">Polityką Prywatności</a>.*
+            </label>
+          </div>
+
           {error && (
             <p className="text-red-500 text-sm mt-2">{error}</p>
           )}
           <p className="text-sm text-gray-500 mt-4">
-            Zapisując się na newsletter otrzymasz „Tajny Protokół 14 Zmian"
+            * Pola wymagane. Zapisując się na newsletter otrzymasz „Tajny Protokół 14 Zmian"
           </p>
         </form>
       </div>
@@ -510,8 +533,13 @@ const Footer = () => (
   <footer className="bg-brand-black py-12 border-t border-brand-graphite">
     <div className="container mx-auto px-6">
       <div className="text-center text-gray-500 text-sm">
-        <p className="mb-2">© 2025 TierOne Pro. All rights reserved.</p>
-        <p>Elite Performance System by Kamil Orawczak</p>
+        <p className="mb-3">© 2025 TierOne Pro. All rights reserved.</p>
+        <p className="mb-3">Elite Performance System by Kamil Orawczak</p>
+        <div className="flex justify-center gap-6 mt-4">
+          <a href="./privacy.html" className="text-brand-lime hover:text-white transition-colors text-sm">
+            Polityka Prywatności
+          </a>
+        </div>
       </div>
     </div>
   </footer>
