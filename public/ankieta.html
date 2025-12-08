@@ -137,6 +137,20 @@
           </p>
         </div>
 
+        <!-- RODO Consent Checkbox -->
+        <div class="mb-6 flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="consent"
+            name="consent"
+            required
+            class="mt-1 w-5 h-5 bg-brand-black border-2 border-brand-lime/30 rounded focus:ring-brand-lime focus:ring-2 text-brand-lime cursor-pointer"
+          />
+          <label for="consent" class="text-sm text-gray-300 leading-relaxed cursor-pointer">
+            Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, nazwisko, e-mail, telefon) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu kontaktu w sprawie konsultacji strategicznej oraz oceny dopasowania do programu TierOne Pro. Zapoznałem/am się z <a href="./privacy.html" target="_blank" class="text-brand-lime hover:underline font-semibold">Polityką Prywatności</a>.*
+          </label>
+        </div>
+
         <!-- Error Message -->
         <div id="errorMessage" class="hidden mb-4 p-4 bg-red-900/20 border border-red-500 rounded-lg text-red-500 text-sm">
         </div>
@@ -184,6 +198,25 @@
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="bg-brand-black py-8 border-t border-brand-graphite">
+    <div class="container mx-auto px-6">
+      <div class="text-center text-gray-500 text-sm">
+        <p class="mb-3">© 2025 TierOne Pro. All rights reserved.</p>
+        <p class="mb-3">Elite Performance System by Kamil Orawczak</p>
+        <div class="flex justify-center gap-6 mt-4">
+          <a href="./privacy.html" class="text-brand-lime hover:text-white transition-colors text-sm">
+            Polityka Prywatności
+          </a>
+          <span class="text-gray-600">|</span>
+          <a href="./terms.html" class="text-brand-lime hover:text-white transition-colors text-sm">
+            Regulamin
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script>
     const form = document.getElementById('recruitmentForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -197,6 +230,14 @@
       // Hide messages
       errorMessage.classList.add('hidden');
       successMessage.classList.add('hidden');
+
+      // Validate consent checkbox
+      const consentCheckbox = document.getElementById('consent');
+      if (!consentCheckbox.checked) {
+        errorMessage.textContent = 'Musisz wyrazić zgodę na przetwarzanie danych osobowych.';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
 
       // Validate situation length
       const situation = document.getElementById('situation').value;
