@@ -539,6 +539,10 @@ const Footer = () => (
           <a href="./privacy.html" className="text-brand-lime hover:text-white transition-colors text-sm">
             Polityka Prywatności
           </a>
+          <span className="text-gray-600">|</span>
+          <a href="./terms.html" className="text-brand-lime hover:text-white transition-colors text-sm">
+            Regulamin
+          </a>
         </div>
       </div>
     </div>
