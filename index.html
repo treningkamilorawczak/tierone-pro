@@ -1,53 +1,54 @@
-<!DOCTYPE html>
-<html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="TierOne Pro - Zbuduj ciało atlety, wytrenuj umysł wojownika, odzyskaj czas dzięki AI. Program mentoringowy łączący trening, mindset i automatyzację." />
-    <title>TierOne Pro | Elite Performance System</title>
+ 1 <!DOCTYPE html>
+    2 <html lang="pl">
+    3   <head>
+    4     <meta charset="UTF-8" />
+    5     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    6     <meta name="description" content="TierOne Pro - Zbuduj ciało atlety, wytrenuj umysł wojownika, odzyskaj czas dzięki AI. Program mentoringowy łączący trening, mindset i automatyzację." />
+    7     <title>TierOne Pro | Elite Performance System</title>
+    8 
+    9     <!-- Open Graph / Facebook -->
+   10     <meta property="og:type" content="website" />
+   11     <meta property="og:url" content="https://tierone-pro.pl/" />
+   12     <meta property="og:title" content="TierOne Pro | Elite Performance System" />
+   13     <meta property="og:description" content="Zbuduj ciało atlety, wytrenuj umysł wojownika, odzyskaj czas dzięki AI. Program mentoringowy łączący trening, mindset i automatyzację." />
+   14     <meta property="og:image" content="https://tierone-pro.pl/og-image.png" />
+   15     <meta property="og:image:width" content="1200" />
+   16     <meta property="og:image:height" content="630" />
+   17 
+   18     <!-- Twitter -->
+   19     <meta property="twitter:card" content="summary_large_image" />
+   20     <meta property="twitter:url" content="https://tierone-pro.pl/" />
+   21     <meta property="twitter:title" content="TierOne Pro | Elite Performance System" />
+   22     <meta property="twitter:description" content="Zbuduj ciało atlety, wytrenuj umysł wojownika, odzyskaj czas dzięki AI. Program mentoringowy łączący trening, mindset i automatyzację." />
+   23     <meta property="twitter:image" content="https://tierone-pro.pl/og-image.png" />
+   24     <script src="https://cdn.tailwindcss.com"></script>
+   25     <link rel="preconnect" href="https://fonts.googleapis.com">
+   26     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   27     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+   28     <script>
+   29       tailwind.config = {
+   30         theme: {
+   31           extend: {
+   32             colors: {
+   33               brand: {
+   34                 black: '#0a0a0a',
+   35                 graphite: '#1f1f1f',
+   36                 lime: '#CCFF00'
+   37               }
+   38             },
+   39             fontFamily: {
+   40               sans: ['Inter', 'sans-serif'],
+   41               heading: ['Oswald', 'sans-serif'],
+   42             }
+   43           }
+   44         }
+   45       }
+   46     </script>
+   47     <link rel="stylesheet" href="./index.css">
+   48   </head>
+   49   <body class="bg-brand-black text-white">
+   50     <div id="root"></div>
+   51     <script type="module" src="./index.tsx"></script>
+   52   </body>
+   53 </html>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tierone-pro.pl/" />
-    <meta property="og:title" content="TierOne Pro | Elite Performance System" />
-    <meta property="og:description" content="Zbuduj ciało atlety, wytrenuj umysł wojownika, odzyskaj czas dzięki AI. Program mentoringowy łączący trening, mindset i automatyzację." />
-    <meta property="og:image" content="https://tierone-pro.pl/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://tierone-pro.pl/" />
-    <meta property="twitter:title" content="TierOne Pro | Elite Performance System" />
-    <meta property="twitter:description" content="Zbuduj ciało atlety, wytrenuj umysł wojownika, odzyskaj czas dzięki AI. Program mentoringowy łączący trening, mindset i automatyzację." />
-    <meta property="twitter:image" content="https://tierone-pro.pl/og-image.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                black: '#0a0a0a',
-                graphite: '#1f1f1f',
-                lime: '#CCFF00'
-              }
-            },
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              heading: ['Oswald', 'sans-serif'],
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="./index.css">
-  </head>
-  <body class="bg-brand-black text-white">
-    <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
-  </body>
-</html>
