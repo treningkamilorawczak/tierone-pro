@@ -29,89 +29,92 @@
   </script>
   <link rel="stylesheet" href="./index.css">
 </head>
-<body class="bg-brand-black text-white min-h-screen flex items-center justify-center">
-  <div class="container mx-auto px-6 py-20">
-    <div class="max-w-2xl mx-auto text-center">
-      <!-- Success Icon -->
-      <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-brand-lime/10 flex items-center justify-center border-4 border-brand-lime">
-        <svg class="w-16 h-16 text-brand-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-        </svg>
+<body class="bg-brand-black text-white min-h-screen flex flex-col">
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- Success Icon -->
+        <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-brand-lime/10 flex items-center justify-center border-4 border-brand-lime">
+          <svg class="w-16 h-16 text-brand-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+
+        <!-- Title -->
+        <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6 text-glow">
+          DZIĘKUJEMY!
+        </h1>
+
+        <!-- Message -->
+        <p class="text-xl md:text-2xl text-gray-300 mb-8">
+          Twój email został zapisany na newsletter TierOne Pro.
+        </p>
+
+        <p class="text-lg text-gray-400 mb-12">
+          Sprawdź swoją skrzynkę – wysłaliśmy Ci potwierdzenie.<br />
+          A teraz odbierz swój raport:
+        </p>
+
+        <!-- Download Button -->
+        <a
+          href="./tajny-protokol.pdf"
+          download="Tajny_Protokol_14_Zmian_TierOne_PRO.pdf"
+          class="inline-block btn-neon text-2xl mb-4"
+        >
+          📥 POBIERZ „TAJNY PROTOKÓŁ 14 ZMIAN"
+        </a>
+
+        <p class="text-sm text-gray-500 mb-12">
+          Kliknij powyższy przycisk, aby pobrać plik PDF.
+        </p>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-brand-lime to-transparent my-12"></div>
+
+        <!-- What's Next -->
+        <div class="text-left bg-brand-graphite border border-brand-lime/20 rounded-lg p-8 mb-8">
+          <h2 class="font-heading text-2xl font-bold mb-4 text-brand-lime">
+            CO DALEJ?
+          </h2>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <span class="text-brand-lime mr-3">✓</span>
+              <span>Przeczytaj raport i poznaj 14 zmian, które transformują Twoje życie</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-brand-lime mr-3">✓</span>
+              <span>Obserwuj nasz newsletter – co tydzień praktyczne wskazówki</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-brand-lime mr-3">✓</span>
+              <span>Gotowy na więcej? Sprawdź nasz pełny program TierOne PRO</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Back to Home -->
+        <a
+          href="./index.html"
+          class="inline-block text-brand-lime hover:text-white transition-colors font-semibold"
+        >
+          ← Wróć na stronę główną
+        </a>
       </div>
-
-      <!-- Title -->
-      <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6 text-glow">
-        DZIĘKUJEMY!
-      </h1>
-
-      <!-- Message -->
-      <p class="text-xl md:text-2xl text-gray-300 mb-8">
-        Twój email został zapisany na newsletter TierOne Pro.
-      </p>
-
-      <p class="text-lg text-gray-400 mb-12">
-        Sprawdź swoją skrzynkę – wysłaliśmy Ci potwierdzenie.<br />
-        A teraz odbierz swój raport:
-      </p>
-
-      <!-- Download Button -->
-      <a
-        href="./tajny-protokol.pdf"
-        download="Tajny_Protokol_14_Zmian_TierOne_PRO.pdf"
-        class="inline-block btn-neon text-2xl mb-8"
-      >
-        📥 POBIERZ „TAJNY PROTOKÓŁ 14 ZMIAN"
-      </a>
-
-      <p class="text-sm text-gray-500 mb-12">
-        PDF zostanie pobrany automatycznie na Twoje urządzenie
-      </p>
-
-      <!-- Divider -->
-      <div class="w-full h-px bg-gradient-to-r from-transparent via-brand-lime to-transparent my-12"></div>
-
-      <!-- What's Next -->
-      <div class="text-left bg-brand-graphite border border-brand-lime/20 rounded-lg p-8 mb-8">
-        <h2 class="font-heading text-2xl font-bold mb-4 text-brand-lime">
-          CO DALEJ?
-        </h2>
-        <ul class="space-y-3 text-gray-300">
-          <li class="flex items-start">
-            <span class="text-brand-lime mr-3">✓</span>
-            <span>Przeczytaj raport i poznaj 14 zmian, które transformują Twoje życie</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-brand-lime mr-3">✓</span>
-            <span>Obserwuj nasz newsletter – co tydzień praktyczne wskazówki</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-brand-lime mr-3">✓</span>
-            <span>Gotowy na więcej? Sprawdź nasz pełny program TierOne PRO</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Back to Home -->
-      <a
-        href="./index.html"
-        class="inline-block text-brand-lime hover:text-white transition-colors font-semibold"
-      >
-        ← Wróć na stronę główną
-      </a>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-brand-black py-8 border-t border-brand-graphite">
+  <footer class="bg-brand-black py-8 border-t border-brand-graphite mt-auto">
     <div class="container mx-auto px-6">
       <div class="text-center text-gray-500 text-sm">
         <p class="mb-3">© 2025 TierOne Pro. All rights reserved.</p>
         <p class="mb-3">Elite Performance System by Kamil Orawczak</p>
-        <div class="flex justify-center gap-6 mt-4">
+        <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 mt-4 items-center">
           <a href="./privacy.html" class="text-brand-lime hover:text-white transition-colors text-sm">
             Polityka Prywatności
           </a>
-          <span class="text-gray-600">|</span>
+          <span class="hidden md:inline text-gray-600">|</span>
           <a href="./terms.html" class="text-brand-lime hover:text-white transition-colors text-sm">
             Regulamin
           </a>
@@ -120,26 +123,13 @@
     </div>
   </footer>
 
-  <!-- Auto-download script -->
+  <!-- Scripts (Optional functionality) -->
   <script>
-    // Automatically trigger download on page load
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const link = document.createElement('a');
-        link.href = './tajny-protokol.pdf';
-        link.download = 'Tajny_Protokol_14_Zmian_TierOne_PRO.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }, 1000); // 1 second delay
-    });
-
     // Display email in URL (optional)
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
     if (email) {
       console.log('Zapisany email:', email);
-      // Tutaj możesz dodać integrację z newsletterem (np. Mailchimp, ConvertKit)
     }
   </script>
 </body>
