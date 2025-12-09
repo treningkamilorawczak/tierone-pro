@@ -289,7 +289,7 @@ const Solution = () => {
     {
       icon: Dumbbell,
       title: 'CIAŁO',
-      subtitle: 'Longevity & Performance',
+      subtitle: 'Długowieczność i Wydolność',
       features: [
         'Trening Hybrydowy + Longevity',
         'Protokoły biohackingu',
@@ -300,7 +300,7 @@ const Solution = () => {
     {
       icon: Brain,
       title: 'UMYSŁ',
-      subtitle: 'Mindset',
+      subtitle: 'Mentalność',
       features: [
         'Stoicki spokój',
         'Regulacja stresu',
@@ -311,7 +311,7 @@ const Solution = () => {
     {
       icon: Cpu,
       title: 'SYSTEM',
-      subtitle: 'AI Automation',
+      subtitle: 'Automatyzacja AI',
       features: [
         'Automatyzacja procesów',
         'Odzyskane 10h/tydz.',
@@ -380,10 +380,6 @@ const Authority = () => (
       <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
         {/* Left: Text */}
         <div>
-          <div className="mb-6">
-            <span className="tactical-badge">YOUR MENTOR</span>
-          </div>
-
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
             NAZYWAM SIĘ<br />
             <span className="text-brand-lime text-glow">KAMIL ORAWCZAK.</span>
@@ -427,7 +423,7 @@ const CaseStudy = () => (
     <div className="container mx-auto px-6">
       {/* Title */}
       <div className="text-center mb-12">
-        <span className="tactical-badge mb-4 inline-block">CASE STUDY</span>
+        <span className="tactical-badge mb-4 inline-block">STUDIA PRZYPADKÓW</span>
         <h2 className="font-heading text-3xl md:text-5xl font-bold">
           OPINIE <span className="text-brand-lime text-glow">LIDERÓW</span>
         </h2>
@@ -533,7 +529,7 @@ const Footer = () => (
   <footer className="bg-brand-black py-12 border-t border-brand-graphite">
     <div className="container mx-auto px-6">
       <div className="text-center text-gray-500 text-sm">
-        <p className="mb-3">© 2025 TierOne Pro. All rights reserved.</p>
+        <p className="mb-3">© 2025 TierOne Pro. Wszelkie prawa zastrzeżone.</p>
         <p className="mb-3">Elite Performance System by Kamil Orawczak</p>
         <div className="flex justify-center gap-6 mt-4">
           <a href="./privacy.html" className="text-brand-lime hover:text-white transition-colors text-sm">
