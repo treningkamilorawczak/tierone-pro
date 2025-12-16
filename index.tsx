@@ -199,6 +199,31 @@ const Hero = () => {
             * Pola wymagane. Zapisując się na newsletter otrzymasz „Tajny Protokół 14 Zmian"
           </p>
         </form>
+
+        {/* Social Proof Stripe */}
+        <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 text-sm border-t border-brand-lime/20 pt-8 fade-in-up">
+          {/* Avatary klientów */}
+          <div className="flex items-center gap-3">
+            <div className="flex -space-x-2">
+              <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">M</div>
+              <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">P</div>
+              <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">W</div>
+            </div>
+            <span className="text-gray-300 font-semibold">100+ CEO zaufało systemowi</span>
+          </div>
+
+          {/* Rating */}
+          <div className="flex items-center gap-2">
+            <span className="text-brand-lime text-lg">★★★★★</span>
+            <span className="text-gray-300">4.9/5</span>
+          </div>
+
+          {/* Mini testimonial */}
+          <div className="text-gray-300 italic text-center md:text-left max-w-md">
+            "15h odzyskane. Najlepsza inwestycja 2024."
+            <span className="text-brand-lime font-semibold block md:inline"> — Michał K., CEO</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -380,20 +405,80 @@ const Authority = () => (
       <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
         {/* Left: Text */}
         <div>
+          {/* NAGŁÓWEK MOCNY */}
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
-            NAZYWAM SIĘ<br />
-            <span className="text-brand-lime text-glow">KAMIL ORAWCZAK.</span>
+            JESTEM TRENEREM PERSONALNYM.<br />
+            NIE DAJĘ CI TYLKO PLANU TRENINGOWEGO —<br />
+            <span className="text-brand-lime text-glow">BUDUJĘ SYSTEM, KTÓRY DZIAŁA.</span>
           </h2>
 
+          {/* CYTAT */}
           <p className="text-lg text-gray-300 mb-8 italic border-l-4 border-brand-lime pl-6">
             "Wierzę, że życie można trenować<br />tak samo jak mięśnie.<br /><br />
             Dyscyplina to nie kara.<br />To waluta, za którą kupujesz wolność."
           </p>
 
-          <p className="text-gray-400 leading-relaxed">
-            Nie jestem teoretykiem z YouTube'a. Łączę standardy sportu wyczynowego z precyzją AI i biohackingu.
-            Pomagam przedsiębiorcom stać się jednostkami elitarnymi – fizycznie, mentalnie i cyfrowo.
+          {/* HISTORIA */}
+          <h3 className="font-heading text-2xl font-bold mb-4">
+            Doświadczenie
+          </h3>
+          <p className="text-gray-400 leading-relaxed mb-6">
+            10 lat temu miałem to samo co Ty dzisiaj: słabe nawyki, chaos i brak systemu.
+            Wiedziałem, że muszę coś zmienić. Nie chodziło o kolejny plan treningowy —
+            chodziło o zbudowanie fundamentu, który przetrwa kryzys, deadline i zmęczenie.
           </p>
+          <p className="text-gray-400 leading-relaxed mb-8">
+            Zacząłem od treningu. Potem odkryłem AI, protokoły longevity i automatyzację.
+            Dziś mam system, który działa od 10 lat — bez wypalenia, bez rezygnacji, bez cofania się.
+          </p>
+
+          {/* CREDENTIALS */}
+          <h3 className="font-heading text-2xl font-bold mb-4">
+            Wiedza
+          </h3>
+          <ul className="space-y-3 mb-8">
+            <li className="flex items-start">
+              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-300">
+                <strong>10 lat konsekwentnego treningu</strong> — OCR, Hyrox, hybrydowa wydolność. Nie dla wyniku, dla systemu który działa.
+              </span>
+            </li>
+            <li className="flex items-start">
+              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-300">
+                <strong>Magister wychowania fizycznego</strong> + trener przygotowania motorycznego + certyfikat EPI NCSC
+              </span>
+            </li>
+            <li className="flex items-start">
+              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-300">
+                <strong>100+ transformacji w 5 lat</strong> — przykład: Wojtek (110kg, ból pleców, chaos) → 3 miesiące później: 95kg, zero bólu, sen i energia odzyskane. Bez diety "na czas", bez planu którego nie da się utrzymać.
+              </span>
+            </li>
+            <li className="flex items-start">
+              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-300">
+                <strong>Wdrażam asystentów AI</strong> — automatyzacja procesów i odzyskany czas
+              </span>
+            </li>
+          </ul>
+
+          {/* UNIKALNA POZYCJA - DLACZEGO TY */}
+          <div className="bg-brand-graphite/50 border-l-4 border-brand-lime p-6 rounded-r-lg">
+            <h3 className="font-heading text-xl font-bold mb-3 text-brand-lime">
+              Czym różnię się od typowego trenera
+            </h3>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              Typowy trener daje Ci plan: „Rób to przez 12 tygodni".
+              Ja buduję <strong>system nawyków</strong>, który działa w tle —
+              bez ciągłych decyzji, bez chaosu, bez cofania się po pierwszym kryzysie.
+            </p>
+            <p className="text-gray-300 leading-relaxed">
+              Łączę trening hybrydowy z automatyzacją AI i protokołami longevity.
+              Nie jestem teoretykiem z YouTube'a. Jestem jedynym w Polsce,
+              który łączy trzy światy: <strong>performance, technologia, system</strong>.
+            </p>
+          </div>
         </div>
 
         {/* Right: Image */}
@@ -408,8 +493,8 @@ const Authority = () => (
 
           {/* Floating badge */}
           <div className="absolute -bottom-6 -left-6 glass-card p-4 border-2 border-brand-lime">
-            <p className="font-heading text-2xl font-bold text-brand-lime">15+</p>
-            <p className="text-xs text-gray-400">LAT DOŚWIADCZENIA</p>
+            <p className="font-heading text-2xl font-bold text-brand-lime">10+</p>
+            <p className="text-xs text-gray-400">LAT W FORMIE</p>
           </div>
         </div>
       </div>
