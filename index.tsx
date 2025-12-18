@@ -202,26 +202,27 @@ const Hero = () => {
 
           {/* Social Proof Stripe */}
           <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 text-sm border-t border-brand-lime/20 pt-8 fade-in-up">
-            {/* Avatary klientów */}
+            {/* Avatar klienta */}
             <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">M</div>
-                <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">P</div>
-                <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">W</div>
+              <div className="w-10 h-10 rounded-full border-2 border-brand-lime overflow-hidden">
+                <img
+                  src="/darek.jpg"
+                  alt="Dariusz Kostkowski"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <span className="text-gray-300 font-semibold">100+ CEO zaufało systemowi</span>
+              <span className="text-gray-300 font-semibold">Dołącz do liderów</span>
             </div>
 
             {/* Rating */}
             <div className="flex items-center gap-2">
               <span className="text-brand-lime text-lg">★★★★★</span>
-              <span className="text-gray-300">4.9/5</span>
             </div>
 
             {/* Mini testimonial */}
             <div className="text-gray-300 italic text-center md:text-left max-w-md">
-              "15h odzyskane. Najlepsza inwestycja 2024."
-              <span className="text-brand-lime font-semibold block md:inline"> — Michał K., CEO</span>
+              "Bardzo dobra wydolność i kondycja"
+              <span className="text-brand-lime font-semibold block md:inline"> — Dariusz K., CEO Bella</span>
             </div>
           </div>
         </div>
@@ -335,13 +336,13 @@ const Solution = () => {
     },
     {
       icon: Cpu,
-      title: 'SYSTEM (Operator OS)', 
+      title: 'SYSTEM',
       subtitle: 'Automatyzacja AI',
       features: [
-        'Twój Osobisty Sztab Generalny',
-        'Wdrażamy systemy AI, które odzyskują Twój czas i pilnują dyscypliny, gdy nikt nie patrzy',
-        'Przejmij pełną kontrolę nad chaosem',
-        'Biznes na autopilocie'
+        'Automatyzacje odzyskują czas',
+        'AI pilnują dyscypliny',
+        'Działanie według planu',
+        'Systemy nie cele'
       ]
     }
   ];
@@ -426,7 +427,7 @@ const Authority = () => (
             KAMIL ORAWCZAK - Trener Personalny
           </h2>
           <p className="text-xl text-gray-400 mb-6">
-            <em>Trener Elite Performance (EPI), Magister Wychowania Fizycznego i pasjonat systemów AI</em>
+            <em>Trener przygotowania motorycznego, Magister Wychowania Fizycznego i pasjonat systemów AI</em>
           </p>
 
           <p className="mb-4 text-gray-300">Większość ludzi traktuje trening jak przykry obowiązek. Moi klienci – Liderzy, CEO, Sportowcy – traktują go jak <span className="text-brand-lime">Strategiczną Konieczność</span>. Budujemy środowisko, w którym dbanie o ciało i umysł staje się Twoim nowym systemem operacyjnym.</p>
