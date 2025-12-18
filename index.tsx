@@ -74,172 +74,173 @@ const Hero = () => {
       {/* HUD overlay and grid pattern */}
       <div className="absolute inset-0 hud-overlay grid-pattern opacity-20" style={{ zIndex: 3 }}></div>
 
-    {/* Content */}
-    <div className="relative z-10 container mx-auto px-6 py-12">
-      <div className="max-w-4xl mx-auto text-center fade-in-up">
-        {/* Badge */}
-        <div className="mb-6">
-          <span className="tactical-badge">TIERONE PRO – ELITE PERFORMANCE SYSTEM</span>
-        </div>
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 py-12">
+        <div className="max-w-4xl mx-auto text-center fade-in-up">
+          {/* Badge */}
+          <div className="mb-6">
+            <span className="tactical-badge">TIERONE PRO – ELITE PERFORMANCE SYSTEM</span>
+          </div>
 
-        {/* Main Headline */}
-        <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
-          ZBUDUJ CIAŁO<br />
-          <span className="text-brand-lime text-glow">ATLETY.</span>
-        </h1>
-        <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
-          WYTRENUJ UMYSŁ<br />
-          <span className="text-brand-lime text-glow">WOJOWNIKA.</span>
-        </h1>
-        <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
-          ŻYJ 100+ LAT<br />
-          <span className="text-brand-lime text-glow">W PEŁNEJ FORMIE.</span>
-        </h1>
-        <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          ODZYSKAJ CZAS<br />
-          <span className="text-brand-lime text-glow">DZIĘKI AI.</span>
-        </h1>
+          {/* Main Headline */}
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
+            ZBUDUJ CIAŁO<br />
+            <span className="text-brand-lime text-glow">ATLETY.</span>
+          </h1>
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
+            WYTRENUJ UMYSŁ<br />
+            <span className="text-brand-lime text-glow">WOJOWNIKA.</span>
+          </h1>
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
+            ŻYJ 100+ LAT<br />
+            <span className="text-brand-lime text-glow">W PEŁNEJ FORMIE.</span>
+          </h1>
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            ODZYSKAJ CZAS<br />
+            <span className="text-brand-lime text-glow">DZIĘKI AI.</span>
+          </h1>
 
-        {/* Subheadline */}
-        <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
-          Zapisz się na newsletter oraz odbierz <span className="text-brand-lime font-semibold">„Tajny Protokół 14 Zmian"</span>
-        </p>
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
+            Zapisz się na newsletter oraz odbierz <span className="text-brand-lime font-semibold">„Tajny Protokół 14 Zmian"</span>
+          </p>
 
-        {/* Email Form */}
-        <form
-          className="max-w-lg mx-auto mb-8 fade-in-up"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const email = (e.target as any).email.value;
+          {/* Email Form */}
+          <form
+            className="max-w-lg mx-auto mb-8 fade-in-up"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const email = (e.target as any).email.value;
 
-            // Walidacja zgody RODO
-            if (!consentChecked) {
-              setError('Musisz wyrazić zgodę na przetwarzanie danych osobowych.');
-              return;
-            }
-
-            setLoading(true);
-            setError('');
-
-            try {
-              // Get Basin Form URL from environment variable
-              const basinUrl = import.meta.env.VITE_BASIN_FORM_URL;
-
-              if (!basinUrl) {
-                // Fallback: redirect without saving (jeśli URL nie jest skonfigurowany)
-                console.warn('Basin Form URL not configured');
-                window.location.href = `/thank-you.html?email=${encodeURIComponent(email)}`;
+              // Walidacja zgody RODO
+              if (!consentChecked) {
+                setError('Musisz wyrazić zgodę na przetwarzanie danych osobowych.');
                 return;
               }
 
-              // Send email to Basin (which forwards to MailerLite)
-              const response = await fetch(basinUrl, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                  email: email,
-                  source: 'TierOne Newsletter'
-                })
-              });
+              setLoading(true);
+              setError('');
 
-              if (response.ok) {
-                // Success - redirect to thank you page
-                window.location.href = `/thank-you.html?email=${encodeURIComponent(email)}`;
-              } else {
-                throw new Error('Failed to submit');
+              try {
+                // Get Basin Form URL from environment variable
+                const basinUrl = import.meta.env.VITE_BASIN_FORM_URL;
+
+                if (!basinUrl) {
+                  // Fallback: redirect without saving (jeśli URL nie jest skonfigurowany)
+                  console.warn('Basin Form URL not configured');
+                  window.location.href = `/thank-you.html?email=${encodeURIComponent(email)}`;
+                  return;
+                }
+
+                // Send email to Basin (which forwards to MailerLite)
+                const response = await fetch(basinUrl, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    source: 'TierOne Newsletter'
+                  })
+                });
+
+                if (response.ok) {
+                  // Success - redirect to thank you page
+                  window.location.href = `/thank-you.html?email=${encodeURIComponent(email)}`;
+                } else {
+                  throw new Error('Failed to submit');
+                }
+
+              } catch (err) {
+                console.error('Błąd zapisu:', err);
+                setError('Wystąpił błąd. Spróbuj ponownie.');
+                setLoading(false);
               }
-
-            } catch (err) {
-              console.error('Błąd zapisu:', err);
-              setError('Wystąpił błąd. Spróbuj ponownie.');
-              setLoading(false);
-            }
-          }}
-        >
-          <div className="flex flex-col md:flex-row gap-4">
-            <input
-              type="email"
-              name="email"
-              required
-              disabled={loading}
-              placeholder="Wpisz swój email"
-              className="flex-1 px-6 py-4 bg-brand-graphite border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg disabled:opacity-50"
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-neon text-xl whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'WYSYŁAM...' : 'ODBIERZ RAPORT'}
-            </button>
-          </div>
-
-          {/* RODO Consent Checkbox */}
-          <div className="mt-4 flex items-start gap-3">
-            <input
-              type="checkbox"
-              id="consent"
-              checked={consentChecked}
-              onChange={(e) => setConsentChecked(e.target.checked)}
-              disabled={loading}
-              className="mt-1 w-5 h-5 bg-brand-graphite border-2 border-brand-lime/30 rounded focus:ring-brand-lime focus:ring-2 text-brand-lime cursor-pointer disabled:opacity-50"
-            />
-            <label htmlFor="consent" className="text-sm text-gray-400 leading-relaxed cursor-pointer">
-              Wyrażam zgodę na przetwarzanie moich danych osobowych (adres e-mail) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu wysyłki newslettera oraz materiałów edukacyjnych. Zapoznałem/am się z <a href="./privacy.html" target="_blank" className="text-brand-lime hover:underline">Polityką Prywatności</a>.*
-            </label>
-          </div>
-
-          {error && (
-            <p className="text-red-500 text-sm mt-2">{error}</p>
-          )}
-          <p className="text-sm text-gray-500 mt-4">
-            * Pola wymagane. Zapisując się na newsletter otrzymasz „Tajny Protokół 14 Zmian"
-          </p>
-        </form>
-
-        {/* Social Proof Stripe */}
-        <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 text-sm border-t border-brand-lime/20 pt-8 fade-in-up">
-          {/* Avatary klientów */}
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">M</div>
-              <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">P</div>
-              <div className="w-10 h-10 rounded-full bg-brand-lime/20 border-2 border-black flex items-center justify-center text-brand-lime font-bold">W</div>
+            }}
+          >
+            <div className="flex flex-col md:flex-row gap-4">
+              <input
+                type="email"
+                name="email"
+                required
+                disabled={loading}
+                placeholder="Wpisz swój email"
+                className="flex-1 px-6 py-4 bg-brand-graphite border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg disabled:opacity-50"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-neon text-xl whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'WYSYŁAM...' : 'ODBIERZ RAPORT'}
+              </button>
             </div>
-            <span className="text-gray-300 font-semibold">100+ CEO zaufało systemowi</span>
-          </div>
 
-          {/* Rating */}
-          <div className="flex items-center gap-2">
-            <span className="text-brand-lime text-lg">★★★★★</span>
-            <span className="text-gray-300">4.9/5</span>
-          </div>
+            {/* RODO Consent Checkbox */}
+            <div className="mt-4 flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="consent"
+                checked={consentChecked}
+                onChange={(e) => setConsentChecked(e.target.checked)}
+                disabled={loading}
+                className="mt-1 w-5 h-5 bg-brand-graphite border-2 border-brand-lime/30 rounded focus:ring-brand-lime focus:ring-2 text-brand-lime cursor-pointer disabled:opacity-50"
+              />
+              <label htmlFor="consent" className="text-sm text-gray-400 leading-relaxed cursor-pointer">
+                Wyrażam zgodę na przetwarzanie moich danych osobowych (adres e-mail) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu wysyłki newslettera oraz materiałów edukacyjnych. Zapoznałem/am się z <a href="./privacy.html" target="_blank" className="text-brand-lime hover:underline">Polityką Prywatności</a>.*
+              </label>
+            </div>
 
-          {/* Mini testimonial */}
-          <div className="text-gray-300 italic text-center md:text-left max-w-md">
-            "15h odzyskane. Najlepsza inwestycja 2024."
-            <span className="text-brand-lime font-semibold block md:inline"> — Michał K., CEO</span>
+            {error && (
+              <p className="text-red-500 text-sm mt-2">{error}</p>
+            )}
+            <p className="text-sm text-gray-500 mt-4">
+              * Pola wymagane. Zapisując się na newsletter otrzymasz „Tajny Protokół 14 Zmian"
+            </p>
+          </form>
+
+          {/* Social Proof Stripe */}
+          <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 text-sm border-t border-brand-lime/20 pt-8 fade-in-up">
+            {/* Avatar klienta */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full border-2 border-brand-lime overflow-hidden">
+                <img
+                  src="/darek.jpg"
+                  alt="Dariusz Kostkowski"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="text-gray-300 font-semibold">Dołącz do liderów</span>
+            </div>
+
+            {/* Rating */}
+            <div className="flex items-center gap-2">
+              <span className="text-brand-lime text-lg">★★★★★</span>
+            </div>
+
+            {/* Mini testimonial */}
+            <div className="text-gray-300 italic text-center md:text-left max-w-md">
+              "Bardzo dobra wydolność i kondycja"
+              <span className="text-brand-lime font-semibold block md:inline"> — Dariusz K., CEO Bella</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    {/* Scroll Indicator */}
-    <button
-      onClick={() => {
-        document.getElementById('solution')?.scrollIntoView({ behavior: 'smooth' });
-      }}
-      className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-transform"
-      aria-label="Scroll to content"
-    >
-      <div className="w-6 h-10 border-2 border-brand-lime rounded-full flex justify-center">
-        <div className="w-1 h-3 bg-brand-lime rounded-full mt-2"></div>
-      </div>
-    </button>
-  </section>
+      {/* Scroll Indicator */}
+      <button
+        onClick={() => {
+          document.getElementById('solution')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-transform"
+        aria-label="Scroll to content"
+      >
+        <div className="w-6 h-10 border-2 border-brand-lime rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-brand-lime rounded-full mt-2"></div>
+        </div>
+      </button>
+    </section>
   );
 };
 
@@ -338,10 +339,10 @@ const Solution = () => {
       title: 'SYSTEM',
       subtitle: 'Automatyzacja AI',
       features: [
-        'Automatyzacja procesów',
-        'Odzyskane 10h/tydz.',
-        'AI jako asystent',
-        'Biznes na autopilocie'
+        'Automatyzacje odzyskują czas',
+        'AI pilnują dyscypliny',
+        'Działanie według planu',
+        'Systemy nie cele'
       ]
     }
   ];
@@ -398,90 +399,12 @@ const Solution = () => {
   );
 };
 
-// Authority Section (About)
+// AUTHORITY SECTION (ABOUT ME)
 const Authority = () => (
   <section className="section bg-black">
     <div className="container mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        {/* Left: Text */}
-        <div>
-          {/* NAGŁÓWEK MOCNY */}
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
-            JESTEM TRENEREM PERSONALNYM.<br />
-            NIE DAJĘ CI TYLKO PLANU TRENINGOWEGO —<br />
-            <span className="text-brand-lime text-glow">BUDUJĘ SYSTEM, KTÓRY DZIAŁA.</span>
-          </h2>
-
-          {/* CYTAT */}
-          <p className="text-lg text-gray-300 mb-8 italic border-l-4 border-brand-lime pl-6">
-            "Wierzę, że życie można trenować<br />tak samo jak mięśnie.<br /><br />
-            Dyscyplina to nie kara.<br />To waluta, za którą kupujesz wolność."
-          </p>
-
-          {/* HISTORIA */}
-          <h3 className="font-heading text-2xl font-bold mb-4">
-            Doświadczenie
-          </h3>
-          <p className="text-gray-400 leading-relaxed mb-6">
-            10 lat temu miałem to samo co Ty dzisiaj: słabe nawyki, chaos i brak systemu.
-            Wiedziałem, że muszę coś zmienić. Nie chodziło o kolejny plan treningowy —
-            chodziło o zbudowanie fundamentu, który przetrwa kryzys, deadline i zmęczenie.
-          </p>
-          <p className="text-gray-400 leading-relaxed mb-8">
-            Zacząłem od treningu. Potem odkryłem AI, protokoły longevity i automatyzację.
-            Dziś mam system, który działa od 10 lat — bez wypalenia, bez rezygnacji, bez cofania się.
-          </p>
-
-          {/* CREDENTIALS */}
-          <h3 className="font-heading text-2xl font-bold mb-4">
-            Wiedza
-          </h3>
-          <ul className="space-y-3 mb-8">
-            <li className="flex items-start">
-              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-300">
-                <strong>10 lat konsekwentnego treningu</strong> — OCR, Hyrox, hybrydowa wydolność. Nie dla wyniku, dla systemu który działa.
-              </span>
-            </li>
-            <li className="flex items-start">
-              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-300">
-                <strong>Magister wychowania fizycznego</strong> + trener przygotowania motorycznego + certyfikat EPI NCSC
-              </span>
-            </li>
-            <li className="flex items-start">
-              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-300">
-                <strong>100+ transformacji w 5 lat</strong> — przykład: Wojtek (110kg, ból pleców, chaos) → 3 miesiące później: 95kg, zero bólu, sen i energia odzyskane. Bez diety "na czas", bez planu którego nie da się utrzymać.
-              </span>
-            </li>
-            <li className="flex items-start">
-              <Zap className="w-5 h-5 text-brand-lime mr-3 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-300">
-                <strong>Wdrażam asystentów AI</strong> — automatyzacja procesów i odzyskany czas
-              </span>
-            </li>
-          </ul>
-
-          {/* UNIKALNA POZYCJA - DLACZEGO TY */}
-          <div className="bg-brand-graphite/50 border-l-4 border-brand-lime p-6 rounded-r-lg">
-            <h3 className="font-heading text-xl font-bold mb-3 text-brand-lime">
-              Czym różnię się od typowego trenera
-            </h3>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              Typowy trener daje Ci plan: „Rób to przez 12 tygodni".
-              Ja buduję <strong>system nawyków</strong>, który działa w tle —
-              bez ciągłych decyzji, bez chaosu, bez cofania się po pierwszym kryzysie.
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              Łączę trening hybrydowy z automatyzacją AI i protokołami longevity.
-              Nie jestem teoretykiem z YouTube'a. Jestem jedynym w Polsce,
-              który łączy trzy światy: <strong>performance, technologia, system</strong>.
-            </p>
-          </div>
-        </div>
-
-        {/* Right: Image */}
+        {/* Left: Image */}
         <div className="relative fade-in-scale">
           <div className="aspect-[3/4] rounded-lg overflow-hidden border-2 border-brand-lime/30 clip-angled transition-all duration-500 hover:border-brand-lime hover:shadow-lg hover:shadow-brand-lime/30">
             <img
@@ -497,12 +420,41 @@ const Authority = () => (
             <p className="text-xs text-gray-400">LAT W FORMIE</p>
           </div>
         </div>
+
+        {/* Right: Text Content */}
+        <div>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">
+            KAMIL ORAWCZAK - Trener Personalny
+          </h2>
+          <p className="text-xl text-gray-400 mb-6">
+            <em>Trener przygotowania motorycznego, Magister Wychowania Fizycznego i pasjonat systemów AI</em>
+          </p>
+
+          <p className="mb-4 text-gray-300">Większość ludzi traktuje trening jak przykry obowiązek. Moi klienci – Liderzy, CEO, Sportowcy – traktują go jak <span className="text-brand-lime">Strategiczną Konieczność</span>. Budujemy środowisko, w którym dbanie o ciało i umysł staje się Twoim nowym systemem operacyjnym.</p>
+
+          <h3 className="font-heading text-2xl font-bold mb-3">DLACZEGO JA?</h3>
+          <ul className="list-disc list-inside space-y-2 mb-4 text-gray-300">
+            <li><span className="text-brand-lime">PRAKTYKA, NIE TEORIA:</span> Setki godzin na sali treningowej, nie w bibliotece. Ukończone Elite Performance Institute (EPI) i dyplomy UEFA.</li>
+            <li><span className="text-brand-lime">DYSCYPLINA:</span> Hartowana w biegach górskich, wyzwaniach OCR i zawodach HYROX. Wiem, co to znaczy przekraczać granice bólu.</li>
+            <li><span className="text-brand-lime">TECHNOLOGIA:</span> Łączę biologiczny potencjał ciała z dźwignią sztucznej inteligencji.</li>
+          </ul>
+
+          <h3 className="font-heading text-2xl font-bold mb-3">CO ZYSKASZ? (REALNE WYNIKI):</h3>
+          <ul className="list-disc list-inside space-y-2 mb-6 text-gray-300">
+            <li>✅ <span className="text-brand-lime">Fizycznie:</span> Siła, wytrzymałość, szybkość w górę. Jesteś dużo bardziej sprawny.</li>
+            <li>✅ <span className="text-brand-lime">Zdrowotnie:</span> Poprawa VO2 max, lepszy sen, więcej energii do życia.</li>
+            <li>✅ <span className="text-brand-lime">Mentalnie:</span> Zmiana mindsetu z "nie lubię ćwiczyć" na "to moja przewaga konkurencyjna".</li>
+          </ul>
+
+          <p className="italic text-gray-400"><span className="text-brand-lime">Moja specjalność?</span> Zamieniam "muszę ćwiczyć" w naturalny nawyk. Twoja solidna forma staje się Twoim standardem, a nie celem.</p>
+        </div>
       </div>
     </div>
   </section>
 );
 
-// Case Study / Testimonials Section
+
+// CASE STUDY / TESTIMONIALS SECTION
 const CaseStudy = () => (
   <section className="section bg-brand-graphite">
     <div className="container mx-auto px-6">
@@ -516,66 +468,32 @@ const CaseStudy = () => (
 
       {/* Testimonials Grid */}
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {/* Testimonial 1 */}
-        <div className="glass-card p-8 fade-in-scale">
-          <div className="mb-6">
-            <p className="text-gray-300 text-lg leading-relaxed italic">
-              "W 3 miesiące zredukowałem wagę o 12kg i odzyskałem 15h tygodniowo dzięki automatyzacji.
-              Kamil to gamechanger dla każdego CEO, który tonie w chaosie."
-            </p>
-          </div>
-          <div className="flex items-center border-t border-brand-lime/20 pt-6">
-            <div className="w-12 h-12 rounded-full bg-brand-lime/20 flex items-center justify-center mr-4">
-              <span className="text-brand-lime font-bold text-xl">M</span>
-            </div>
-            <div>
-              <p className="font-semibold text-white">Michał K.</p>
-              <p className="text-sm text-gray-400">CEO SOFTWARE HOUSE</p>
-            </div>
-          </div>
-        </div>
 
-        {/* Testimonial 2 */}
-        <div className="glass-card p-8 fade-in-scale">
-          <div className="mb-6">
-            <p className="text-gray-300 text-lg leading-relaxed italic">
-              "Myślałem, że nie mam czasu na trening. Kamil pokazał mi, że nie mam czasu, żeby NIE trenować.
-              Moja efektywność w firmie wzrosła dwukrotnie."
-            </p>
+        {/* NOWA, WYRÓŻNIONA OPINIA DARKA KOSTKOWSKIEGO */}
+        <div className="relative glass-card p-8 fade-in-scale md:col-span-2 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
+          <p className="text-xl italic mb-4 text-gray-100">"Pomimo obaw przed siłownią, obaw przed tym że nie dam rady się podciągnąć – wszystko zrealizowałem – pompki, podciąganie się bez większego wysiłku..."</p>
+          <div className="flex items-center justify-center mb-4">
+            <span className="text-brand-lime text-3xl">★★★★★</span>
           </div>
-          <div className="flex items-center border-t border-brand-lime/20 pt-6">
-            <div className="w-12 h-12 rounded-full bg-brand-lime/20 flex items-center justify-center mr-4">
-              <span className="text-brand-lime font-bold text-xl">P</span>
+
+          {/* SEKCJA ZDJĘCIE + PODPIS */}
+          <div className="flex items-center justify-center gap-4 mt-4">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
+               <img
+                 src="/darek.jpg"
+                 alt="Dariusz Kostkowski"
+                 className="w-full h-full object-cover"
+               />
             </div>
-            <div>
-              <p className="font-semibold text-white">Piotr R.</p>
-              <p className="text-sm text-gray-400">FOUNDER FINTECH</p>
+
+            <div className="text-left">
+              <p className="font-semibold text-lg text-white">Dariusz Kostkowski</p>
+              <p className="text-sm text-gray-400">CEO Bella sp. z o.o.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
 
-// Social Proof Section
-const SocialProof = () => (
-  <section className="py-20 bg-brand-graphite border-y-2 border-brand-lime/20">
-    <div className="container mx-auto px-6">
-      <div className="grid grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
-        <div>
-          <div className="stat-number pulse-glow mb-2">15</div>
-          <p className="text-gray-400 uppercase text-sm font-semibold tracking-wider">LAT DOŚWIADCZENIA</p>
-        </div>
-
-        <div>
-          <div className="stat-number pulse-glow mb-2">100+</div>
-          <p className="text-gray-400 uppercase text-sm font-semibold tracking-wider">TRANSFORMACJI</p>
-        </div>
-
-        <div>
-          <div className="stat-number pulse-glow mb-2">0</div>
-          <p className="text-gray-400 uppercase text-sm font-semibold tracking-wider">WYMÓWEK</p>
+          {/* Szczegóły transformacji */}
+          <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 77kg, brak siły w górnej partii mięśni, brak kontaktu z siłownią ponad 20 lat. <span className="text-brand-lime">Cel:</span> Przygotowanie do warsztatu siły specjalne w biznesie - wersja extreme. <span className="text-brand-lime">Rezultat:</span> Waga 81kg (wzrost masy mięśniowej 74kg, 2,5% tłuszczu), bardzo dobra wydolność i kondycja, podciąganie i pompki bez wysiłku.</p>
         </div>
       </div>
     </div>
@@ -639,7 +557,6 @@ const App = () => {
       <Solution />
       <Authority />
       <CaseStudy />
-      <SocialProof />
       <FinalCTA />
       <Footer />
     </>
