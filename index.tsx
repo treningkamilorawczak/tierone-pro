@@ -479,7 +479,7 @@ const CaseStudy = () => (
           <div className="flex items-center justify-center gap-4 mt-4">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
                <img
-                 src="./darek.jpg"
+                 src="/darek.jpg"
                  alt="Dariusz Kostkowski"
                  className="w-full h-full object-cover"
                />
