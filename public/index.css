@@ -449,3 +449,18 @@ input[type="email"]:focus {
     padding-right: 0.5rem;
   }
 }
+
+/* Hide Scrollbar for Horizontal Carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Smooth scroll behavior */
+.scrollbar-hide {
+  scroll-behavior: smooth;
+}
