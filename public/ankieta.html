@@ -119,6 +119,83 @@
           </select>
         </div>
 
+        <!-- Q1: Challenge -->
+        <div class="mb-6">
+          <label for="challenge" class="block text-sm font-semibold text-brand-lime mb-2">
+            Jaki jest Twój największy challenge? *
+          </label>
+          <select
+            id="challenge"
+            name="challenge"
+            required
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
+          >
+            <option value="" disabled selected>Wybierz...</option>
+            <option value="brak_czasu">Brak czasu na trening/regenerację</option>
+            <option value="niska_energia">Niska energia, wypalenie zawodowe</option>
+            <option value="sen">Problemy ze snem</option>
+            <option value="rodzina">Chcę być fit dla rodziny</option>
+            <option value="performance">Chcę zwiększyć performance w biznesie</option>
+            <option value="inne">Inne</option>
+          </select>
+        </div>
+
+        <!-- Q2: Czas tygodniowy -->
+        <div class="mb-6">
+          <label for="weeklyTime" class="block text-sm font-semibold text-brand-lime mb-2">
+            Ile czasu tygodniowo możesz poświęcić? *
+          </label>
+          <select
+            id="weeklyTime"
+            name="weeklyTime"
+            required
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
+          >
+            <option value="" disabled selected>Wybierz...</option>
+            <option value="5plus">5+ godzin/tydzień</option>
+            <option value="3_5">3-5 godzin/tydzień</option>
+            <option value="1_3">1-3 godziny/tydzień</option>
+            <option value="below1">Poniżej 1 godziny</option>
+          </select>
+        </div>
+
+        <!-- Q3: Timeline -->
+        <div class="mb-6">
+          <label for="timeline" class="block text-sm font-semibold text-brand-lime mb-2">
+            Kiedy chcesz rozpocząć? *
+          </label>
+          <select
+            id="timeline"
+            name="timeline"
+            required
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
+          >
+            <option value="" disabled selected>Wybierz...</option>
+            <option value="asap">Jak najszybciej (w tym tygodniu)</option>
+            <option value="2weeks">W ciągu 2 tygodni</option>
+            <option value="month">W ciągu miesiąca</option>
+            <option value="later">Później (zbieram info)</option>
+          </select>
+        </div>
+
+        <!-- Q4: Cel 90-dniowy -->
+        <div class="mb-6">
+          <label for="goal90days" class="block text-sm font-semibold text-brand-lime mb-2">
+            Konkretny cel na 90 dni *
+          </label>
+          <textarea
+            id="goal90days"
+            name="goal90days"
+            required
+            rows="4"
+            placeholder="Przykład: Chcę mieć energię przez cały dzień, spać 7h+ bez budzenia, trenować 3x/tydzień..."
+            class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg resize-none"
+          ></textarea>
+          <p class="text-sm text-gray-500 mt-2">
+            Min. 50 znaków - im konkretniej, tym lepiej dopasuję ofertę
+          </p>
+        </div>
+
         <!-- Opis sytuacji -->
         <div class="mb-8">
           <label for="situation" class="block text-sm font-semibold text-brand-lime mb-2">
@@ -251,22 +328,36 @@
       submitBtn.disabled = true;
       submitText.textContent = 'WYSYŁAM...';
 
+      // Validate goal90days length
+      const goal90days = document.getElementById('goal90days').value;
+      if (goal90days.length < 50) {
+        errorMessage.textContent = 'Cel 90-dniowy musi mieć min. 50 znaków';
+        errorMessage.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitText.textContent = 'WYŚLIJ ANKIETĘ';
+        return;
+      }
+
       // Get form data
       const formData = {
         fullName: document.getElementById('fullName').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
         goal: document.getElementById('goal').value,
+        challenge: document.getElementById('challenge').value,
+        weeklyTime: document.getElementById('weeklyTime').value,
+        timeline: document.getElementById('timeline').value,
+        goal90days: goal90days,
         situation: situation,
         source: 'Ankieta rekrutacyjna TierOne',
         timestamp: new Date().toISOString()
       };
 
       try {
-        // Get Basin URL from localStorage (or use env var if available)
-        const basinUrl = 'https://usebasin.com/f/088e2f4f4dd2';
+        // Wysyłka bezpośrednio do n8n (ankieta workflow)
+        const n8nAnkietaUrl = 'https://n8n.n8nworkflowai.online/webhook/tierone-ankieta';
 
-        const response = await fetch(basinUrl, {
+        const response = await fetch(n8nAnkietaUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
