@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Dumbbell, Brain, Cpu, Target, Zap, Shield } from 'lucide-react';
+import { Dumbbell, Brain, Cpu, Target, Zap, Shield, ChevronDown } from 'lucide-react';
 
 // Hero Section
 const Hero = () => {
@@ -100,9 +100,9 @@ const Hero = () => {
             <span className="text-brand-lime text-glow">DZIĘKI AI.</span>
           </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - ZMIANA #1 */}
           <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
-            Zapisz się na newsletter oraz odbierz <span className="text-brand-lime font-semibold">„Tajny Protokół 14 Zmian"</span>
+            Odbierz <span className="text-brand-lime font-semibold">„14-Dniowy Protokół Transformacji"</span> — konkretny plan: sen, trening, mindset i automatyzacja AI
           </p>
 
           {/* Email Form */}
@@ -122,28 +122,37 @@ const Hero = () => {
               setError('');
 
               try {
-                // Get Basin Form URL from environment variable
+                // Wysyłamy BEZPOŚREDNIO do n8n (omijamy Basin FREE tier)
+                const n8nWebhookUrl = 'https://n8n.n8nworkflowai.online/webhook/tierone-newsletter-v2';
                 const basinUrl = import.meta.env.VITE_BASIN_FORM_URL;
 
-                if (!basinUrl) {
-                  // Fallback: redirect without saving (jeśli URL nie jest skonfigurowany)
-                  console.warn('Basin Form URL not configured');
-                  window.location.href = `/thank-you.html?email=${encodeURIComponent(email)}`;
-                  return;
-                }
+                const payload = {
+                  email: email,
+                  source: 'TierOne Newsletter',
+                  timestamp: new Date().toISOString()
+                };
 
-                // Send email to Basin (which forwards to MailerLite)
-                const response = await fetch(basinUrl, {
+                // Główne wysłanie do n8n → MailerLite
+                const response = await fetch(n8nWebhookUrl, {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                   },
-                  body: JSON.stringify({
-                    email: email,
-                    source: 'TierOne Newsletter'
-                  })
+                  body: JSON.stringify(payload)
                 });
+
+                // Równolegle wysyłamy do Basin jako backup (nie czekamy na odpowiedź)
+                if (basinUrl) {
+                  fetch(basinUrl, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                  }).catch(err => console.log('Basin backup failed:', err));
+                }
 
                 if (response.ok) {
                   // Success - redirect to thank you page
@@ -196,7 +205,7 @@ const Hero = () => {
               <p className="text-red-500 text-sm mt-2">{error}</p>
             )}
             <p className="text-sm text-gray-500 mt-4">
-              * Pola wymagane. Zapisując się na newsletter otrzymasz „Tajny Protokół 14 Zmian"
+              * Pola wymagane. Otrzymasz „14-Dniowy Protokół Transformacji"
             </p>
           </form>
 
@@ -454,7 +463,7 @@ const Authority = () => (
 );
 
 
-// CASE STUDY / TESTIMONIALS SECTION
+// CASE STUDY / TESTIMONIALS SECTION - ZMIANA #2: VERTICAL STACK
 const CaseStudy = () => (
   <section className="section bg-brand-graphite">
     <div className="container mx-auto px-6">
@@ -466,17 +475,16 @@ const CaseStudy = () => (
         </h2>
       </div>
 
-      {/* Horizontal Scrollable Testimonials */}
-      <div className="flex overflow-x-auto gap-8 snap-x snap-mandatory pb-8 px-6 scrollbar-hide">
+      {/* VERTICAL STACK - Mobile-first, 2 columns on desktop */}
+      <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
 
-        {/* NOWA, WYRÓŻNIONA OPINIA DARKA KOSTKOWSKIEGO */}
-        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30 min-w-[600px] max-w-[600px] flex-shrink-0 snap-center">
+        {/* OPINIA #1 - DARIUSZ KOSTKOWSKI (Featured) */}
+        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
           <p className="text-xl italic mb-4 text-gray-100">"Pomimo obaw przed siłownią, obaw przed tym że nie dam rady się podciągnąć – wszystko zrealizowałem – pompki, podciąganie się bez większego wysiłku..."</p>
           <div className="flex items-center justify-center mb-4">
             <span className="text-brand-lime text-3xl">★★★★★</span>
           </div>
 
-          {/* SEKCJA ZDJĘCIE + PODPIS */}
           <div className="flex items-center justify-center gap-4 mt-4">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
                <img
@@ -492,18 +500,16 @@ const CaseStudy = () => (
             </div>
           </div>
 
-          {/* Szczegóły transformacji */}
           <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 77kg, brak siły w górnej partii mięśni, brak kontaktu z siłownią ponad 20 lat. <span className="text-brand-lime">Cel:</span> Przygotowanie do warsztatu siły specjalne w biznesie - wersja extreme. <span className="text-brand-lime">Rezultat:</span> Waga 81kg (wzrost masy mięśniowej 74kg, 2,5% tłuszczu), bardzo dobra wydolność i kondycja, podciąganie i pompki bez wysiłku.</p>
         </div>
 
-        {/* OPINIA PATRYKA HABERA */}
-        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30 min-w-[600px] max-w-[600px] flex-shrink-0 snap-center">
+        {/* OPINIA #2 - PATRYK HABER */}
+        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
           <p className="text-xl italic mb-4 text-gray-100">"Przyszedłem do Kamila, bo chciałem systemowo trenować, nie na czuja. 26 miesięcy ciężkiej roboty. Półmaraton z 1:36 spadł do 1:24 - 12 minut lepiej. Waga z 75 do 71. Najważniejsze? Nauczyłem się trenować mądrze - bez wypalania się co 3 miesiące."</p>
           <div className="flex items-center justify-center mb-4">
             <span className="text-brand-lime text-3xl">★★★★★</span>
           </div>
 
-          {/* SEKCJA ZDJĘCIE + PODPIS */}
           <div className="flex items-center justify-center gap-4 mt-4">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
                <img
@@ -519,18 +525,16 @@ const CaseStudy = () => (
             </div>
           </div>
 
-          {/* Szczegóły transformacji */}
           <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 75kg, półmaraton 1:36:40, brak systematyki w treningu. <span className="text-brand-lime">Cel:</span> Poprawa wyników w bieganiu, nauczenie się systemowego podejścia. <span className="text-brand-lime">Rezultat:</span> 26 miesięcy systematycznej pracy, waga 71kg (-4kg), półmaraton 1:24:40 (poprawa o 12 minut), brak wypalenia.</p>
         </div>
 
-        {/* OPINIA JACKA FORNALA */}
-        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30 min-w-[600px] max-w-[600px] flex-shrink-0 snap-center">
+        {/* OPINIA #3 - JACEK FORNAL */}
+        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30 md:col-span-2 md:max-w-2xl md:mx-auto">
           <p className="text-xl italic mb-4 text-gray-100">"Przez 3 miesiące przygotowywaliśmy się do ekstremalnego wyzwania. Kamil stworzył szczegółowy plan siłowo-wytrzymałościowy i wsparcie mentalne. Rezultat? Świetne samopoczucie i pełna gotowość do bardzo wymagającego wydarzenia."</p>
           <div className="flex items-center justify-center mb-4">
             <span className="text-brand-lime text-3xl">★★★★★</span>
           </div>
 
-          {/* SEKCJA ZDJĘCIE + PODPIS */}
           <div className="flex items-center justify-center gap-4 mt-4">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
                <img
@@ -546,13 +550,83 @@ const CaseStudy = () => (
             </div>
           </div>
 
-          {/* Szczegóły transformacji */}
           <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 66kg, niewystarczająca wytrzymałość i kondycja, brak przygotowania do ekstremalnego wyzwania. <span className="text-brand-lime">Cel:</span> Przygotowanie siłowo-wytrzymałościowe do bardzo wymagającego wydarzenia (3-miesięczny plan). <span className="text-brand-lime">Rezultat:</span> 3 miesiące systematycznej pracy, poprawa wydolności organizmu, wzrost siły i wytrzymałości, świetne samopoczucie, pełna gotowość do wyzwania.</p>
         </div>
       </div>
     </div>
   </section>
 );
+
+// FAQ SECTION - ZMIANA #3: NOWA SEKCJA
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "Ile czasu to zabiera?",
+      a: "2-3 godziny tygodniowo na trening (2×60-90 min). Nie musisz żyć w siłowni — system jest zbudowany pod ludzi, którzy mają pełne życie zawodowe i rodzinne."
+    },
+    {
+      q: "Czy to działa zdalnie?",
+      a: "Tak, 100% programu możesz realizować zdalnie. Treningi prowadzimy online (video calls), plany dostajesz w aplikacji, wsparcie AI i protokoły działają 24/7. Klienci z całej Polski i zagranicy."
+    },
+    {
+      q: "Dla kogo to NIE jest?",
+      a: "Jeśli szukasz \"magicznej pigułki\" lub chcesz rezultatów bez zaangażowania — to nie jest dla Ciebie. TierOne Pro to dla ludzi gotowych na systematyczną pracę i zmianę nawyków."
+    },
+    {
+      q: "Co jeśli nie mam doświadczenia z treningiem?",
+      a: "Nie problem. 70% moich klientów zaczynało od zera lub po długiej przerwie. Program dostosowujemy do Twojego poziomu — od podstaw budujemy poprawną technikę i stopniowo zwiększamy intensywność."
+    }
+  ];
+
+  return (
+    <section className="section bg-black">
+      <div className="container mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Title */}
+          <div className="text-center mb-12">
+            <span className="tactical-badge mb-4 inline-block">FAQ</span>
+            <h2 className="font-heading text-3xl md:text-5xl font-bold">
+              NAJCZĘŚCIEJ ZADAWANE <span className="text-brand-lime text-glow">PYTANIA</span>
+            </h2>
+          </div>
+
+          {/* FAQ Items */}
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="glass-card border border-brand-lime/20 overflow-hidden">
+                <button
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-brand-lime/5 transition-colors"
+                >
+                  <span className="font-heading text-lg md:text-xl font-semibold text-white pr-4">
+                    {faq.q}
+                  </span>
+                  <ChevronDown
+                    className={`w-6 h-6 text-brand-lime flex-shrink-0 transition-transform duration-300 ${
+                      openIndex === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openIndex === index ? 'max-h-96' : 'max-h-0'
+                  }`}
+                >
+                  <div className="px-6 pb-5 text-gray-300 leading-relaxed border-t border-brand-lime/10 pt-4">
+                    {faq.a}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 // Final CTA Section
 const FinalCTA = () => (
@@ -611,6 +685,7 @@ const App = () => {
       <Solution />
       <Authority />
       <CaseStudy />
+      <FAQ />
       <FinalCTA />
       <Footer />
     </>
