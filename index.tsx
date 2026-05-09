@@ -123,7 +123,7 @@ const Hero = () => {
 
               try {
                 // Wysyłamy BEZPOŚREDNIO do n8n (omijamy Basin FREE tier)
-                const n8nWebhookUrl = 'https://n8n.n8nworkflowai.online/webhook/tierone-newsletter-v2';
+                const n8nWebhookUrl = 'https://n8n-a7xk.srv1213726.hstgr.cloud/webhook/newsletter-signup';
                 const basinUrl = import.meta.env.VITE_BASIN_FORM_URL;
 
                 const payload = {
