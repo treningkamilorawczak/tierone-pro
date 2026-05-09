@@ -122,24 +122,19 @@ const Hero = () => {
               setError('');
 
               try {
-                // Wysyłamy BEZPOŚREDNIO do n8n (omijamy Basin FREE tier)
-                const n8nWebhookUrl = 'https://n8n-a7xk.srv1213726.hstgr.cloud/webhook/newsletter-signup';
+                // Wysyłamy BEZPOŚREDNIO do MailerLite (omijamy n8n - prostsze!)
+                const mailerliteApiKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZGY2ZDcwZTg1NDc1NTdlMzVjZjUyMDAxNDc2M2VhZTBjODliMTQxMTE4ZTMzMDZmNTkzYjY2N2I0MGM5MjZhMDQ2OWQwMTk2ZjRiOTg2NDMiLCJpYXQiOjE3NzgzNDA4NzcuNjIzMTEzLCJuYmYiOjE3NzgzNDA4NzcuNjIzMTE1LCJleHAiOjQ5MzQwMTQ0NzcuNjE2MTM2LCJzdWIiOiIxOTYwMTI0Iiwic2NvcGVzIjpbXX0.wK--smKtXbrPvcxHtCyemkNR4luoWFoSztwgNDu9_l96sAooUVxH4NgnNS7t5UJTOCUE62hqvmyt2GQLoYL_iJZNVadV9yCtZnh0fZKqzzSRf1x0dx1l7ItG3Bh1j_XYqgITN8wxRNiLf4aBanaRTY6izAczAJMgklIvpkANtIefXTgPFxQwTwsDDmBjGFJq0HdKTCjo-ssN9dcIAdC-u_1M9bQLaD6eqraWceYhnj9bJjiJCzNoAkYuPunShTtpa4MckXflolMfVL5YVI9iyUmf1D2kxqsXIZ7VdWBjGc31O28KxuYLNsnAo_u8yOrxtecw5tDQLuEqQjncdUTcItwxjIDtgGXuCapAgoipEfHH1rwtnddlPRVnQ3uybzV95FNBUaSWFET8nZ_Wb-Ty4PAMBOt5hMzdwi-a9NJobfZ6pl2X-4kZdCGyLKMp33QbP_7GuqHGoDRkQZZdDPUVN-nXBO_fIiaY-WhTO3kEzCYYyLTMsFaA22GAV_L_h7Vw2_dYSmJHLHbgNTXjF-5cX-Ub9p6QDYVQ8Va-Bv9m-O_aK5pP6yiPMr6io9an0glqjLasfDRW_Zpy_A3WfWcPIoqVS644ARWs2rhUcKbnkZCEBrKHIRYebUG9F1ZuqTsedl2q2jp75XrXEHr5WIuAwsS95FUOmo-7KswYgSFFTSg';
                 const basinUrl = import.meta.env.VITE_BASIN_FORM_URL;
 
-                const payload = {
-                  email: email,
-                  source: 'TierOne Newsletter',
-                  timestamp: new Date().toISOString()
-                };
-
-                // Główne wysłanie do n8n → MailerLite
-                const response = await fetch(n8nWebhookUrl, {
+                // Główne wysłanie BEZPOŚREDNIO do MailerLite API
+                const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
                   method: 'POST',
                   headers: {
+                    'Authorization': `Bearer ${mailerliteApiKey}`,
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                   },
-                  body: JSON.stringify(payload)
+                  body: JSON.stringify({ email: email })
                 });
 
                 // Równolegle wysyłamy do Basin jako backup (nie czekamy na odpowiedź)
