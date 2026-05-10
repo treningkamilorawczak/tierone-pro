@@ -230,6 +230,9 @@
           </label>
         </div>
 
+        <!-- Hidden fields for Basin -->
+        <input type="hidden" name="source" value="Ankieta rekrutacyjna TierOne">
+
         <!-- Error Message -->
         <div id="errorMessage" class="hidden mb-4 p-4 bg-red-900/20 border border-red-500 rounded-lg text-red-500 text-sm">
         </div>
@@ -303,16 +306,15 @@
     const errorMessage = document.getElementById('errorMessage');
     const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Hide messages
+    form.addEventListener('submit', (e) => {
+      // Clear messages
       errorMessage.classList.add('hidden');
       successMessage.classList.add('hidden');
 
       // Validate consent checkbox
       const consentCheckbox = document.getElementById('consent');
       if (!consentCheckbox.checked) {
+        e.preventDefault();
         errorMessage.textContent = 'Musisz wyrazić zgodę na przetwarzanie danych osobowych.';
         errorMessage.classList.remove('hidden');
         return;
@@ -321,82 +323,27 @@
       // Validate situation length
       const situation = document.getElementById('situation').value;
       if (situation.length < 50) {
+        e.preventDefault();
         errorMessage.textContent = 'Opis sytuacji musi mieć min. 50 znaków';
         errorMessage.classList.remove('hidden');
         return;
       }
 
-      // Disable button
-      submitBtn.disabled = true;
-      submitText.textContent = 'WYSYŁAM...';
-
       // Validate goal90days length
       const goal90days = document.getElementById('goal90days').value;
       if (goal90days.length < 50) {
+        e.preventDefault();
         errorMessage.textContent = 'Cel 90-dniowy musi mieć min. 50 znaków';
         errorMessage.classList.remove('hidden');
-        submitBtn.disabled = false;
-        submitText.textContent = 'WYŚLIJ ANKIETĘ';
         return;
       }
 
-      // Get form data
-      const formData = {
-        fullName: document.getElementById('fullName').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        goal: document.getElementById('goal').value,
-        challenge: document.getElementById('challenge').value,
-        weeklyTime: document.getElementById('weeklyTime').value,
-        timeline: document.getElementById('timeline').value,
-        goal90days: goal90days,
-        situation: situation,
-        source: 'Ankieta rekrutacyjna TierOne',
-        timestamp: new Date().toISOString()
-      };
+      // All validation passed - show loading state
+      submitBtn.disabled = true;
+      submitText.textContent = 'WYSYŁAM...';
 
-      try {
-        // Wysyłka do Basin
-        const basinUrl = 'https://usebasin.com/f/088e2f4f4dd2';
-
-        // Przygotuj FormData (Basin wymaga FormData, nie JSON)
-        const formDataToSend = new FormData(form);
-        formDataToSend.append('source', 'Ankieta rekrutacyjna TierOne');
-        formDataToSend.append('timestamp', new Date().toISOString());
-
-        const response = await fetch(basinUrl, {
-          method: 'POST',
-          body: formDataToSend,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          // Success
-          successMessage.classList.remove('hidden');
-          form.reset();
-
-          // Scroll to success message
-          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-          // Redirect after 3 seconds
-          setTimeout(() => {
-            window.location.href = './index.html';
-          }, 3000);
-        } else {
-          throw new Error('Failed to submit');
-        }
-
-      } catch (error) {
-        console.error('Błąd wysyłania:', error);
-        errorMessage.textContent = 'Wystąpił błąd. Spróbuj ponownie lub skontaktuj się bezpośrednio.';
-        errorMessage.classList.remove('hidden');
-
-        // Re-enable button
-        submitBtn.disabled = false;
-        submitText.textContent = 'WYŚLIJ ANKIETĘ';
-      }
+      // Let form submit naturally to Basin
+      // Basin will handle the POST and redirect to thank-you page
     });
   </script>
 </body>
