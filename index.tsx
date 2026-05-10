@@ -122,36 +122,15 @@ const Hero = () => {
               setError('');
 
               try {
-                // Używamy Basin → MailerLite (działało wcześniej!)
-                const basinUrl = import.meta.env.VITE_BASIN_FORM_URL;
-
-                const payload = {
-                  email: email,
-                  source: 'TierOne Newsletter',
-                  timestamp: new Date().toISOString()
-                };
-
-                // Basin automatycznie wysyła do MailerLite
-                const response = await fetch(basinUrl, {
+                // Wysyłka przez Netlify Function → MailerLite
+                const response = await fetch('/.netlify/functions/newsletter', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                   },
-                  body: JSON.stringify(payload)
+                  body: JSON.stringify({ email })
                 });
-
-                // Równolegle wysyłamy do Basin jako backup (nie czekamy na odpowiedź)
-                if (basinUrl) {
-                  fetch(basinUrl, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                  }).catch(err => console.log('Basin backup failed:', err));
-                }
 
                 if (response.ok) {
                   // Success - redirect to thank you page
