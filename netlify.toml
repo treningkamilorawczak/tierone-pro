@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
+
+# Wyłącz WSZYSTKIE extensions/plugins
+[build.processing]
+  skip_processing = false
+
+[build.environment]
+  VITE_BASIN_FORM_URL = "https://usebasin.com/f/5f4705abf12b"
+  # Wymuszenie ignorowania extensions
+  NETLIFY_USE_BUILD_PLUGINS = "false"
