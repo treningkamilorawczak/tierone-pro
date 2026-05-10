@@ -1,6 +1,0 @@
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[build.environment]
-  VITE_BASIN_FORM_URL = "https://usebasin.com/f/088e2f4f4dd2"
