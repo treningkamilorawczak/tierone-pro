@@ -51,8 +51,6 @@
       <!-- Form -->
       <form
         id="recruitmentForm"
-        action="https://usebasin.com/f/5f4705abf12b"
-        method="POST"
         class="bg-brand-graphite border border-brand-lime/20 rounded-lg p-8 md:p-12"
       >
         <!-- Imię i Nazwisko -->
@@ -63,7 +61,7 @@
           <input
             type="text"
             id="fullName"
-            name="Imię i Nazwisko"
+            name="fullName"
             required
             placeholder="Jan Kowalski"
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg"
@@ -78,7 +76,7 @@
           <input
             type="tel"
             id="phone"
-            name="Numer telefonu"
+            name="phone"
             required
             placeholder="+48 123 456 789"
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg"
@@ -93,7 +91,7 @@
           <input
             type="email"
             id="email"
-            name="Email"
+            name="email"
             required
             placeholder="jan@example.com"
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white placeholder-gray-500 focus:border-brand-lime focus:outline-none rounded-lg"
@@ -107,7 +105,7 @@
           </label>
           <select
             id="goal"
-            name="Cel współpracy"
+            name="goal"
             required
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
           >
@@ -128,7 +126,7 @@
           </label>
           <select
             id="challenge"
-            name="Największy challenge"
+            name="challenge"
             required
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
           >
@@ -149,7 +147,7 @@
           </label>
           <select
             id="weeklyTime"
-            name="Czas tygodniowo"
+            name="weeklyTime"
             required
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
           >
@@ -168,7 +166,7 @@
           </label>
           <select
             id="timeline"
-            name="Kiedy chcesz rozpocząć"
+            name="timeline"
             required
             class="w-full px-6 py-4 bg-brand-black border-2 border-brand-lime/30 text-white focus:border-brand-lime focus:outline-none rounded-lg"
           >
@@ -187,7 +185,7 @@
           </label>
           <textarea
             id="goal90days"
-            name="Cel 90 dni"
+            name="goal90days"
             required
             rows="4"
             placeholder="Przykład: Chcę mieć energię przez cały dzień, spać 7h+ bez budzenia, trenować 3x/tydzień..."
@@ -205,7 +203,7 @@
           </label>
           <textarea
             id="situation"
-            name="Opis sytuacji"
+            name="situation"
             required
             rows="6"
             placeholder="Opisz w kilku zdaniach gdzie teraz jesteś i co chcesz osiągnąć..."
@@ -221,7 +219,7 @@
           <input
             type="checkbox"
             id="consent"
-            name="Zgoda RODO"
+            name="consent"
             required
             class="mt-1 w-5 h-5 bg-brand-black border-2 border-brand-lime/30 rounded focus:ring-brand-lime focus:ring-2 text-brand-lime cursor-pointer"
           />
@@ -229,9 +227,6 @@
             Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, nazwisko, e-mail, telefon) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu kontaktu w sprawie konsultacji strategicznej oraz oceny dopasowania do programu TierOne Pro. Zapoznałem/am się z <a href="./privacy.html" target="_blank" class="text-brand-lime hover:underline font-semibold">Polityką Prywatności</a>.*
           </label>
         </div>
-
-        <!-- Hidden fields for Basin -->
-        <input type="hidden" name="source" value="Ankieta rekrutacyjna TierOne">
 
         <!-- Error Message -->
         <div id="errorMessage" class="hidden mb-4 p-4 bg-red-900/20 border border-red-500 rounded-lg text-red-500 text-sm">
@@ -306,15 +301,16 @@
     const errorMessage = document.getElementById('errorMessage');
     const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', (e) => {
-      // Clear messages
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Hide messages
       errorMessage.classList.add('hidden');
       successMessage.classList.add('hidden');
 
       // Validate consent checkbox
       const consentCheckbox = document.getElementById('consent');
       if (!consentCheckbox.checked) {
-        e.preventDefault();
         errorMessage.textContent = 'Musisz wyrazić zgodę na przetwarzanie danych osobowych.';
         errorMessage.classList.remove('hidden');
         return;
@@ -323,27 +319,78 @@
       // Validate situation length
       const situation = document.getElementById('situation').value;
       if (situation.length < 50) {
-        e.preventDefault();
         errorMessage.textContent = 'Opis sytuacji musi mieć min. 50 znaków';
         errorMessage.classList.remove('hidden');
         return;
       }
 
-      // Validate goal90days length
-      const goal90days = document.getElementById('goal90days').value;
-      if (goal90days.length < 50) {
-        e.preventDefault();
-        errorMessage.textContent = 'Cel 90-dniowy musi mieć min. 50 znaków';
-        errorMessage.classList.remove('hidden');
-        return;
-      }
-
-      // All validation passed - show loading state
+      // Disable button
       submitBtn.disabled = true;
       submitText.textContent = 'WYSYŁAM...';
 
-      // Let form submit naturally to Basin
-      // Basin will handle the POST and redirect to thank-you page
+      // Validate goal90days length
+      const goal90days = document.getElementById('goal90days').value;
+      if (goal90days.length < 50) {
+        errorMessage.textContent = 'Cel 90-dniowy musi mieć min. 50 znaków';
+        errorMessage.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitText.textContent = 'WYŚLIJ ANKIETĘ';
+        return;
+      }
+
+      // Get form data
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        goal: document.getElementById('goal').value,
+        challenge: document.getElementById('challenge').value,
+        weeklyTime: document.getElementById('weeklyTime').value,
+        timeline: document.getElementById('timeline').value,
+        goal90days: goal90days,
+        situation: situation,
+        source: 'Ankieta rekrutacyjna TierOne',
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        // Wysyłka bezpośrednio do n8n (ankieta workflow)
+        const n8nAnkietaUrl = 'https://n8n.n8nworkflowai.online/webhook/tierone-ankieta';
+
+        const response = await fetch(n8nAnkietaUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          // Success
+          successMessage.classList.remove('hidden');
+          form.reset();
+
+          // Scroll to success message
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Redirect after 3 seconds
+          setTimeout(() => {
+            window.location.href = './index.html';
+          }, 3000);
+        } else {
+          throw new Error('Failed to submit');
+        }
+
+      } catch (error) {
+        console.error('Błąd wysyłania:', error);
+        errorMessage.textContent = 'Wystąpił błąd. Spróbuj ponownie lub skontaktuj się bezpośrednio.';
+        errorMessage.classList.remove('hidden');
+
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitText.textContent = 'WYŚLIJ ANKIETĘ';
+      }
     });
   </script>
 </body>
