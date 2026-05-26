@@ -122,14 +122,20 @@ const Hero = () => {
               setError('');
 
               try {
-                // Wysyłka przez Netlify Function → MailerLite
-                const response = await fetch('/.netlify/functions/newsletter', {
+                // Wysyłka bezpośrednio do Basin (Newsletter form)
+                const basinNewsletterUrl = 'https://usebasin.com/f/5f4705abf12b';
+
+                const response = await fetch(basinNewsletterUrl, {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                   },
-                  body: JSON.stringify({ email })
+                  body: JSON.stringify({
+                    email: email,
+                    source: 'TierOne Newsletter',
+                    timestamp: new Date().toISOString()
+                  })
                 });
 
                 if (response.ok) {
@@ -453,82 +459,156 @@ const CaseStudy = () => (
         </h2>
       </div>
 
-      {/* VERTICAL STACK - Mobile-first, 2 columns on desktop */}
-      <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      {/* MARQUEE — auto-scroll, pause on hover, infinite loop */}
+      <div className="testimonials-marquee" role="region" aria-label="Opinie klientów">
+        <div className="testimonials-track">
 
-        {/* OPINIA #1 - DARIUSZ KOSTKOWSKI (Featured) */}
-        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
-          <p className="text-xl italic mb-4 text-gray-100">"Pomimo obaw przed siłownią, obaw przed tym że nie dam rady się podciągnąć – wszystko zrealizowałem – pompki, podciąganie się bez większego wysiłku..."</p>
-          <div className="flex items-center justify-center mb-4">
-            <span className="text-brand-lime text-3xl">★★★★★</span>
+          {/* OPINIA #1 - DARIUSZ KOSTKOWSKI */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
+            <p className="text-xl italic mb-4 text-gray-100">"Pomimo obaw przed siłownią, obaw przed tym że nie dam rady się podciągnąć – wszystko zrealizowałem – pompki, podciąganie się bez większego wysiłku..."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/darek.jpg" alt="Dariusz Kostkowski" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Dariusz Kostkowski</p>
+                <p className="text-sm text-gray-400">CEO Bella sp. z o.o.</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 77kg, brak siły w górnej partii mięśni, brak kontaktu z siłownią ponad 20 lat. <span className="text-brand-lime">Cel:</span> Przygotowanie do warsztatu siły specjalne w biznesie - wersja extreme. <span className="text-brand-lime">Rezultat:</span> Waga 81kg (wzrost masy mięśniowej 74kg, 2,5% tłuszczu), bardzo dobra wydolność i kondycja, podciąganie i pompki bez wysiłku.</p>
           </div>
 
-          <div className="flex items-center justify-center gap-4 mt-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
-               <img
-                 src="/darek.jpg"
-                 alt="Dariusz Kostkowski"
-                 className="w-full h-full object-cover"
-               />
+          {/* OPINIA #2 - PATRYK HABER */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
+            <p className="text-xl italic mb-4 text-gray-100">"Przyszedłem do Kamila, bo chciałem systemowo trenować, nie na czuja. 26 miesięcy ciężkiej roboty. Półmaraton z 1:36 spadł do 1:24 - 12 minut lepiej. Waga z 75 do 71. Najważniejsze? Nauczyłem się trenować mądrze - bez wypalania się co 3 miesiące."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
             </div>
-
-            <div className="text-left">
-              <p className="font-semibold text-lg text-white">Dariusz Kostkowski</p>
-              <p className="text-sm text-gray-400">CEO Bella sp. z o.o.</p>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/patryk.jpg" alt="Patryk Haber" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Patryk Haber</p>
+                <p className="text-sm text-gray-400">EngRoTec GmbH & Co. KG</p>
+              </div>
             </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 75kg, półmaraton 1:36:40, brak systematyki w treningu. <span className="text-brand-lime">Cel:</span> Poprawa wyników w bieganiu, nauczenie się systemowego podejścia. <span className="text-brand-lime">Rezultat:</span> 26 miesięcy systematycznej pracy, waga 71kg (-4kg), półmaraton 1:24:40 (poprawa o 12 minut), brak wypalenia.</p>
           </div>
 
-          <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 77kg, brak siły w górnej partii mięśni, brak kontaktu z siłownią ponad 20 lat. <span className="text-brand-lime">Cel:</span> Przygotowanie do warsztatu siły specjalne w biznesie - wersja extreme. <span className="text-brand-lime">Rezultat:</span> Waga 81kg (wzrost masy mięśniowej 74kg, 2,5% tłuszczu), bardzo dobra wydolność i kondycja, podciąganie i pompki bez wysiłku.</p>
-        </div>
-
-        {/* OPINIA #2 - PATRYK HABER */}
-        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
-          <p className="text-xl italic mb-4 text-gray-100">"Przyszedłem do Kamila, bo chciałem systemowo trenować, nie na czuja. 26 miesięcy ciężkiej roboty. Półmaraton z 1:36 spadł do 1:24 - 12 minut lepiej. Waga z 75 do 71. Najważniejsze? Nauczyłem się trenować mądrze - bez wypalania się co 3 miesiące."</p>
-          <div className="flex items-center justify-center mb-4">
-            <span className="text-brand-lime text-3xl">★★★★★</span>
+          {/* OPINIA #3 - JACEK FORNAL */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
+            <p className="text-xl italic mb-4 text-gray-100">"Przez 3 miesiące przygotowywaliśmy się do ekstremalnego wyzwania. Kamil stworzył szczegółowy plan siłowo-wytrzymałościowy i wsparcie mentalne. Rezultat? Świetne samopoczucie i pełna gotowość do bardzo wymagającego wydarzenia."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/jacek.jpg" alt="Jacek Fornal" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Jacek Fornal</p>
+                <p className="text-sm text-gray-400">FORTIM</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 66kg, niewystarczająca wytrzymałość i kondycja, brak przygotowania do ekstremalnego wyzwania. <span className="text-brand-lime">Cel:</span> Przygotowanie siłowo-wytrzymałościowe do bardzo wymagającego wydarzenia (3-miesięczny plan). <span className="text-brand-lime">Rezultat:</span> 3 miesiące systematycznej pracy, poprawa wydolności organizmu, wzrost siły i wytrzymałości, świetne samopoczucie, pełna gotowość do wyzwania.</p>
           </div>
 
-          <div className="flex items-center justify-center gap-4 mt-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
-               <img
-                 src="/patryk.jpg"
-                 alt="Patryk Haber"
-                 className="w-full h-full object-cover"
-               />
+          {/* OPINIA #4 - DAWID ZIAREK */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
+            <p className="text-xl italic mb-4 text-gray-100">"Świetny fachowiec. Idealnie potrafi wyczuć barierę — co człowiek da radę zrobić, a czego już nie. Czułem się dużo silniejszy już po pierwszych kilku treningach. Zdecydowanie polecam."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
             </div>
-
-            <div className="text-left">
-              <p className="font-semibold text-lg text-white">Patryk Haber</p>
-              <p className="text-sm text-gray-400">EngRoTec GmbH & Co. KG</p>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/dawid.jpg" alt="Dawid Ziarek" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Dawid Ziarek</p>
+                <p className="text-sm text-gray-400">Padel · Sport rakietowy</p>
+              </div>
             </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 78kg, brak wydolności, szybkie męczenie, gra w padla (mobilność i siła uderzeń do poprawy). <span className="text-brand-lime">Cel:</span> Poprawa wydolności + lepsza gra w sportach rakietowych. <span className="text-brand-lime">Rezultat:</span> Dużo lepsza wydolność, brak szybkiego męczenia, bieg 10 km w ok. 50 min bez biegowych przygotowań (sam trening motoryczny mocno poprawił kondycję), lepsza kontrola nad ciałem, dużo lepsza gra w padla.</p>
           </div>
 
-          <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 75kg, półmaraton 1:36:40, brak systematyki w treningu. <span className="text-brand-lime">Cel:</span> Poprawa wyników w bieganiu, nauczenie się systemowego podejścia. <span className="text-brand-lime">Rezultat:</span> 26 miesięcy systematycznej pracy, waga 71kg (-4kg), półmaraton 1:24:40 (poprawa o 12 minut), brak wypalenia.</p>
-        </div>
+          {/* === DUPLIKATY DLA INFINITE LOOP (aria-hidden) === */}
 
-        {/* OPINIA #3 - JACEK FORNAL */}
-        <div className="relative glass-card p-8 fade-in-scale bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30 md:col-span-2 md:max-w-2xl md:mx-auto">
-          <p className="text-xl italic mb-4 text-gray-100">"Przez 3 miesiące przygotowywaliśmy się do ekstremalnego wyzwania. Kamil stworzył szczegółowy plan siłowo-wytrzymałościowy i wsparcie mentalne. Rezultat? Świetne samopoczucie i pełna gotowość do bardzo wymagającego wydarzenia."</p>
-          <div className="flex items-center justify-center mb-4">
-            <span className="text-brand-lime text-3xl">★★★★★</span>
+          {/* DUP #1 - DARIUSZ KOSTKOWSKI */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30" aria-hidden="true">
+            <p className="text-xl italic mb-4 text-gray-100">"Pomimo obaw przed siłownią, obaw przed tym że nie dam rady się podciągnąć – wszystko zrealizowałem – pompki, podciąganie się bez większego wysiłku..."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/darek.jpg" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Dariusz Kostkowski</p>
+                <p className="text-sm text-gray-400">CEO Bella sp. z o.o.</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 77kg, brak siły w górnej partii mięśni, brak kontaktu z siłownią ponad 20 lat. <span className="text-brand-lime">Cel:</span> Przygotowanie do warsztatu siły specjalne w biznesie - wersja extreme. <span className="text-brand-lime">Rezultat:</span> Waga 81kg (wzrost masy mięśniowej 74kg, 2,5% tłuszczu), bardzo dobra wydolność i kondycja, podciąganie i pompki bez wysiłku.</p>
           </div>
 
-          <div className="flex items-center justify-center gap-4 mt-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime">
-               <img
-                 src="/jacek.jpg"
-                 alt="Jacek Fornal"
-                 className="w-full h-full object-cover"
-               />
+          {/* DUP #2 - PATRYK HABER */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30" aria-hidden="true">
+            <p className="text-xl italic mb-4 text-gray-100">"Przyszedłem do Kamila, bo chciałem systemowo trenować, nie na czuja. 26 miesięcy ciężkiej roboty. Półmaraton z 1:36 spadł do 1:24 - 12 minut lepiej. Waga z 75 do 71. Najważniejsze? Nauczyłem się trenować mądrze - bez wypalania się co 3 miesiące."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
             </div>
-
-            <div className="text-left">
-              <p className="font-semibold text-lg text-white">Jacek Fornal</p>
-              <p className="text-sm text-gray-400">FORTIM</p>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/patryk.jpg" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Patryk Haber</p>
+                <p className="text-sm text-gray-400">EngRoTec GmbH & Co. KG</p>
+              </div>
             </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 75kg, półmaraton 1:36:40, brak systematyki w treningu. <span className="text-brand-lime">Cel:</span> Poprawa wyników w bieganiu, nauczenie się systemowego podejścia. <span className="text-brand-lime">Rezultat:</span> 26 miesięcy systematycznej pracy, waga 71kg (-4kg), półmaraton 1:24:40 (poprawa o 12 minut), brak wypalenia.</p>
           </div>
 
-          <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 66kg, niewystarczająca wytrzymałość i kondycja, brak przygotowania do ekstremalnego wyzwania. <span className="text-brand-lime">Cel:</span> Przygotowanie siłowo-wytrzymałościowe do bardzo wymagającego wydarzenia (3-miesięczny plan). <span className="text-brand-lime">Rezultat:</span> 3 miesiące systematycznej pracy, poprawa wydolności organizmu, wzrost siły i wytrzymałości, świetne samopoczucie, pełna gotowość do wyzwania.</p>
+          {/* DUP #3 - JACEK FORNAL */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30" aria-hidden="true">
+            <p className="text-xl italic mb-4 text-gray-100">"Przez 3 miesiące przygotowywaliśmy się do ekstremalnego wyzwania. Kamil stworzył szczegółowy plan siłowo-wytrzymałościowy i wsparcie mentalne. Rezultat? Świetne samopoczucie i pełna gotowość do bardzo wymagającego wydarzenia."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/jacek.jpg" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Jacek Fornal</p>
+                <p className="text-sm text-gray-400">FORTIM</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 66kg, niewystarczająca wytrzymałość i kondycja, brak przygotowania do ekstremalnego wyzwania. <span className="text-brand-lime">Cel:</span> Przygotowanie siłowo-wytrzymałościowe do bardzo wymagającego wydarzenia (3-miesięczny plan). <span className="text-brand-lime">Rezultat:</span> 3 miesiące systematycznej pracy, poprawa wydolności organizmu, wzrost siły i wytrzymałości, świetne samopoczucie, pełna gotowość do wyzwania.</p>
+          </div>
+
+          {/* DUP #4 - DAWID ZIAREK */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30" aria-hidden="true">
+            <p className="text-xl italic mb-4 text-gray-100">"Świetny fachowiec. Idealnie potrafi wyczuć barierę — co człowiek da radę zrobić, a czego już nie. Czułem się dużo silniejszy już po pierwszych kilku treningach. Zdecydowanie polecam."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/dawid.jpg" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Dawid Ziarek</p>
+                <p className="text-sm text-gray-400">Padel · Sport rakietowy</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 78kg, brak wydolności, szybkie męczenie, gra w padla (mobilność i siła uderzeń do poprawy). <span className="text-brand-lime">Cel:</span> Poprawa wydolności + lepsza gra w sportach rakietowych. <span className="text-brand-lime">Rezultat:</span> Dużo lepsza wydolność, brak szybkiego męczenia, bieg 10 km w ok. 50 min bez biegowych przygotowań (sam trening motoryczny mocno poprawił kondycję), lepsza kontrola nad ciałem, dużo lepsza gra w padla.</p>
+          </div>
+
         </div>
       </div>
     </div>

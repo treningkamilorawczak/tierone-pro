@@ -464,3 +464,45 @@ input[type="email"]:focus {
 .scrollbar-hide {
   scroll-behavior: smooth;
 }
+
+/* === TESTIMONIALS — MARQUEE === */
+.testimonials-marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 8px 0 16px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  animation: testimonials-marquee 65s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-marquee:hover .testimonials-track {
+  animation-play-state: paused;
+}
+
+.testimonials-track > div {
+  flex: 0 0 420px;
+}
+
+@keyframes testimonials-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 16px)); }
+}
+
+@media (max-width: 700px) {
+  .testimonials-track > div { flex: 0 0 320px; }
+  .testimonials-track { animation-duration: 50s; gap: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track { animation: none; transform: none; }
+  .testimonials-marquee { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .testimonials-track > div { scroll-snap-align: start; }
+}
