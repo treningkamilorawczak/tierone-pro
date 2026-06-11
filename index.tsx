@@ -122,20 +122,14 @@ const Hero = () => {
               setError('');
 
               try {
-                // Wysyłka bezpośrednio do Basin (Newsletter form)
-                const basinNewsletterUrl = 'https://usebasin.com/f/5f4705abf12b';
-
-                const response = await fetch(basinNewsletterUrl, {
+                // Zapis przez funkcję Netlify -> MailerLite (klucz API po stronie serwera)
+                const response = await fetch('/.netlify/functions/newsletter', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                   },
-                  body: JSON.stringify({
-                    email: email,
-                    source: 'TierOne Newsletter',
-                    timestamp: new Date().toISOString()
-                  })
+                  body: JSON.stringify({ email })
                 });
 
                 if (response.ok) {

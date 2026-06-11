@@ -42,7 +42,8 @@ export const handler: Handler = async (event) => {
         email: email,
         fields: {
           source: 'TierOne Newsletter'
-        }
+        },
+        groups: ['187007340479776137'] // grupa "Tier One Newsletter" w MailerLite
       })
     });
 
