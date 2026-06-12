@@ -354,10 +354,8 @@
       };
 
       try {
-        // Wysyłka bezpośrednio do n8n (ankieta workflow)
-        const n8nAnkietaUrl = 'https://n8n.n8nworkflowai.online/webhook/tierone-ankieta';
-
-        const response = await fetch(n8nAnkietaUrl, {
+        // Zapis przez funkcję Netlify -> MailerLite (grupa: Ankieta rekrutacyjna)
+        const response = await fetch('/.netlify/functions/ankieta', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

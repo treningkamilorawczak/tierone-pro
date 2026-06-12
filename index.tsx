@@ -87,18 +87,13 @@ const Hero = () => {
             ZBUDUJ CIAŁO<br />
             <span className="text-brand-lime text-glow">ATLETY.</span>
           </h1>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
             WYTRENUJ UMYSŁ<br />
             <span className="text-brand-lime text-glow">WOJOWNIKA.</span>
           </h1>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-3 leading-tight">
-            ŻYJ 100+ LAT<br />
-            <span className="text-brand-lime text-glow">W PEŁNEJ FORMIE.</span>
-          </h1>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            ODZYSKAJ CZAS<br />
-            <span className="text-brand-lime text-glow">DZIĘKI AI.</span>
-          </h1>
+          <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl mx-auto">
+            Dla liderów, którzy chcą żyć <span className="text-brand-lime font-semibold">100+ lat w pełnej formie</span> — z czasem odzyskanym dzięki AI.
+          </p>
 
           {/* Subheadline - ZMIANA #1 */}
           <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
@@ -178,6 +173,11 @@ const Hero = () => {
                 Wyrażam zgodę na przetwarzanie moich danych osobowych (adres e-mail) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu wysyłki newslettera oraz materiałów edukacyjnych. Zapoznałem/am się z <a href="./privacy.html" target="_blank" className="text-brand-lime hover:underline">Polityką Prywatności</a>.*
               </label>
             </div>
+
+            <p className="text-sm text-gray-500 mt-4 leading-relaxed">
+              Protokół wysyłam za darmo, bo to próbka systemu, z którego korzystają moi klienci 1:1.
+              Po zapisie: PDF od razu + od czasu do czasu konkretne materiały. Zero spamu, wypis jednym kliknięciem.
+            </p>
 
             {error && (
               <p className="text-red-500 text-sm mt-2">{error}</p>
@@ -411,10 +411,10 @@ const Authority = () => (
         {/* Right: Text Content */}
         <div>
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">
-            KAMIL ORAWCZAK - Trener Personalny
+            KAMIL ORAWCZAK — Trener przygotowania motorycznego liderów
           </h2>
           <p className="text-xl text-gray-400 mb-6">
-            <em>Trener przygotowania motorycznego, Magister Wychowania Fizycznego i pasjonat systemów AI</em>
+            <em>Magister Wychowania Fizycznego · twórca systemu TIER ONE PRO · oficjalny partner przygotowań SSWB</em>
           </p>
 
           <p className="mb-4 text-gray-300">Większość ludzi traktuje trening jak przykry obowiązek. Moi klienci – Liderzy, CEO, Sportowcy – traktują go jak <span className="text-brand-lime">Strategiczną Konieczność</span>. Budujemy środowisko, w którym dbanie o ciało i umysł staje się Twoim nowym systemem operacyjnym.</p>
@@ -424,6 +424,7 @@ const Authority = () => (
             <li><span className="text-brand-lime">PRAKTYKA, NIE TEORIA:</span> Setki godzin na sali treningowej, nie w bibliotece. Ukończone Elite Performance Institute (EPI) i dyplomy UEFA.</li>
             <li><span className="text-brand-lime">DYSCYPLINA:</span> Hartowana w biegach górskich, wyzwaniach OCR i zawodach HYROX. Wiem, co to znaczy przekraczać granice bólu.</li>
             <li><span className="text-brand-lime">TECHNOLOGIA:</span> Łączę biologiczny potencjał ciała z dźwignią sztucznej inteligencji.</li>
+            <li><span className="text-brand-lime">SPRAWDZONE W BOJU:</span> Mój podopieczny wygrał całą edycję EXTREME warsztatów „Siły Specjalne w Biznesie" — jego historię znajdziesz niżej.</li>
           </ul>
 
           <h3 className="font-heading text-2xl font-bold mb-3">CO ZYSKASZ? (REALNE WYNIKI):</h3>
