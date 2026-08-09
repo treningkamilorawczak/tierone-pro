@@ -530,6 +530,24 @@ const CaseStudy = () => (
             <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 78kg, brak wydolności, szybkie męczenie, gra w padla (mobilność i siła uderzeń do poprawy). <span className="text-brand-lime">Cel:</span> Poprawa wydolności + lepsza gra w sportach rakietowych. <span className="text-brand-lime">Rezultat:</span> Dużo lepsza wydolność, brak szybkiego męczenia, bieg 10 km w ok. 50 min bez biegowych przygotowań (sam trening motoryczny mocno poprawił kondycję), lepsza kontrola nad ciałem, dużo lepsza gra w padla.</p>
           </div>
 
+          {/* OPINIA #5 - MACIEK SZYMALSKI */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30">
+            <p className="text-xl italic mb-4 text-gray-100">"Miałem przekonanie, że mam dużo czasu, więc trening «od czasu do czasu» wystarczy. Kamil to zweryfikował — kluczem okazała się regularność i dyscyplina, których wcześniej mi brakowało. Indywidualny plan hybrydowy, nacisk na białko i sen oraz stały nadzór sprawiły, że progres był znacznie większy i szybszy."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/maciek.jpg" alt="Maciek Szymalski" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Maciek Szymalski</p>
+                <p className="text-sm text-gray-400">Nabór do straży pożarnej</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 84kg, mała liczba podciągnięć, brak kippingu, słaba wydolność i szybkość, brak regularności i motywacji. <span className="text-brand-lime">Cel:</span> Maksymalizacja wyników w naborze do straży pożarnej. <span className="text-brand-lime">Rezultat:</span> Po 5 miesiącach waga 78kg (−6kg), 26 podciągnięć, bieg po kopercie 21,5 s, beep test 10,5, wyraźny wzrost siły i kondycji.</p>
+          </div>
+
           {/* === DUPLIKATY DLA INFINITE LOOP (aria-hidden) === */}
 
           {/* DUP #1 - DARIUSZ KOSTKOWSKI */}
@@ -602,6 +620,24 @@ const CaseStudy = () => (
               </div>
             </div>
             <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 78kg, brak wydolności, szybkie męczenie, gra w padla (mobilność i siła uderzeń do poprawy). <span className="text-brand-lime">Cel:</span> Poprawa wydolności + lepsza gra w sportach rakietowych. <span className="text-brand-lime">Rezultat:</span> Dużo lepsza wydolność, brak szybkiego męczenia, bieg 10 km w ok. 50 min bez biegowych przygotowań (sam trening motoryczny mocno poprawił kondycję), lepsza kontrola nad ciałem, dużo lepsza gra w padla.</p>
+          </div>
+
+          {/* DUP #5 - MACIEK SZYMALSKI */}
+          <div className="relative glass-card p-8 bg-black border-l-4 border-brand-lime shadow-xl shadow-brand-lime/30" aria-hidden="true">
+            <p className="text-xl italic mb-4 text-gray-100">"Miałem przekonanie, że mam dużo czasu, więc trening «od czasu do czasu» wystarczy. Kamil to zweryfikował — kluczem okazała się regularność i dyscyplina, których wcześniej mi brakowało. Indywidualny plan hybrydowy, nacisk na białko i sen oraz stały nadzór sprawiły, że progres był znacznie większy i szybszy."</p>
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-brand-lime text-3xl">★★★★★</span>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-lime flex-shrink-0">
+                <img src="/maciek.jpg" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-lg text-white">Maciek Szymalski</p>
+                <p className="text-sm text-gray-400">Nabór do straży pożarnej</p>
+              </div>
+            </div>
+            <p className="text-sm mt-6 pt-4 border-t border-brand-lime/20 text-gray-300"><span className="text-brand-lime">Punkt wyjścia:</span> Waga 84kg, mała liczba podciągnięć, brak kippingu, słaba wydolność i szybkość, brak regularności i motywacji. <span className="text-brand-lime">Cel:</span> Maksymalizacja wyników w naborze do straży pożarnej. <span className="text-brand-lime">Rezultat:</span> Po 5 miesiącach waga 78kg (−6kg), 26 podciągnięć, bieg po kopercie 21,5 s, beep test 10,5, wyraźny wzrost siły i kondycji.</p>
           </div>
 
         </div>
