@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protokół T1 – archiwum newslettera | TierOne Pro</title>
+<meta name="description" content="Co niedzielę jeden list o treningu i długowieczności. Archiwum wydań Protokołu T1.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tierone-pro.pl/newsletter/">
+<meta property="og:title" content="Protokół T1 – newsletter TierOne Pro">
+<meta property="og:description" content="Co niedzielę jeden list o treningu i długowieczności: badanie, co z niego wynika i protokół do sprawdzenia od poniedziałku.">
+<meta property="og:image" content="https://tierone-pro.pl/og-image.jpg?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap">
+<link rel="stylesheet" href="/newsletter/newsletter.css">
+</head>
+<body>
+<div class="col" style="padding:22px 0 0">
+
+  <header class="mast"><div class="in">
+    <a class="logo" href="/newsletter/">TierOne <em>Pro</em></a>
+    <a class="cap" href="/">← tierone-pro.pl</a>
+  </div></header>
+
+  <main class="paper">
+    <div class="cap" style="color:var(--muted)">Newsletter · co niedzielę</div>
+    <h1>Protokół <em>T1</em></h1>
+    <p class="lead">Jeden list w tygodniu o treningu i długowieczności: badanie, co z niego wynika i protokół do sprawdzenia od poniedziałku.</p>
+
+<!-- WYDANIA:START (generuje scripts/nowe-wydanie.py z newsletter/wydania.json, nie edytuj ręcznie) -->
+    <div class="cap month">Październik 2026</div>
+    <a class="ed" href="/newsletter/nr-1-zegarek-mowi-zmeczony-ty-czujesz-sie-swietnie-komu-wierzyc.html">
+      <span class="num">01</span>
+      <span>
+        <span class="t">Zegarek mówi „zmęczony”, Ty czujesz się świetnie. Komu wierzyć?</span>
+        <span class="d">Co HRV pokazuje po bieganiu, po interwałach i po siłowni. I jaki test zrobić rano zamiast niego.</span>
+        <span class="cap meta">25.10.2026</span>
+      </span>
+    </a>
+    <div class="cap month" style="margin-top:64px">Z wcześniejszych listów</div>
+    <p style="font-size:17px;color:var(--muted);margin:14px 0 0">Wybór z pierwszego roku, zanim newsletter dostał nazwę.</p>
+    <div class="grid">
+      <a class="old" href="/newsletter/twoje-mitochondria-slysza-o-czym-myslisz-wieczorem.html"><span class="cap" style="color:var(--muted)">Październik 2026</span><span class="t">Twoje mitochondria słyszą, o czym myślisz wieczorem.</span></a>
+    </div>
+<!-- WYDANIA:END -->
+
+    <section id="zapis" class="signup">
+      <div class="cap" style="color:var(--lime);margin-bottom:8px">Protokół T1 · co niedzielę</div>
+      <p class="signup-h">W skrzynce od razu. <em>Tutaj tydzień później.</em></p>
+      <form data-zapis novalidate>
+        <label for="email" class="signup-l">Twój e-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="Wpisz swój email" required>
+        <button type="submit">Zapisuję się</button>
+        <label class="signup-zgoda"><input type="checkbox" name="zgoda" required><span>Wyrażam zgodę na przetwarzanie moich danych osobowych (adres e-mail) przez TRENUJ PROFESJONALNIE KAMIL ORAWCZAK w celu wysyłki newslettera oraz materiałów edukacyjnych. Zapoznałem/am się z <a href="/privacy.html" target="_blank">Polityką Prywatności</a>.*</span></label>
+        <p class="signup-blad" data-blad role="alert" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot cap">
+    <a href="https://www.instagram.com/kamil_orawczak/">Instagram</a> / <a href="https://www.facebook.com/KamilOrawczakPerformance/">Facebook</a> / <a href="/">tierone-pro.pl</a>
+  </footer>
+</div>
+<script src="/newsletter/zapis.js" defer></script>
+</body>
+</html>

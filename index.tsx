@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Dumbbell, Brain, Cpu, Target, Zap, Shield, ChevronDown } from 'lucide-react';
+import wydania from './newsletter/wydania.json';
 
 // Hero Section
 const Hero = () => {
@@ -24,7 +25,7 @@ const Hero = () => {
   }));
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12">
       {/* Video Background */}
       <video
         autoPlay
@@ -751,7 +752,11 @@ const Footer = () => (
       <div className="text-center text-gray-500 text-sm">
         <p className="mb-3">© 2025 TierOne Pro. Wszelkie prawa zastrzeżone.</p>
         <p className="mb-3">Elite Performance System by Kamil Orawczak</p>
-        <div className="flex justify-center gap-6 mt-4">
+        <div className="flex flex-wrap justify-center gap-6 mt-4">
+          <a href="/newsletter/" className="text-brand-lime hover:text-white transition-colors text-sm">
+            Newsletter Protokół T1
+          </a>
+          <span className="text-gray-600">|</span>
           <a href="./privacy.html" className="text-brand-lime hover:text-white transition-colors text-sm">
             Polityka Prywatności
           </a>
@@ -765,15 +770,127 @@ const Footer = () => (
   </footer>
 );
 
+// Menu - wspólne z podstronami /newsletter/
+const SiteNav = () => {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: '/#program', label: 'Program' },
+    { href: '/#o-mnie', label: 'O mnie' },
+    { href: '/#opinie', label: 'Opinie' },
+    { href: '/newsletter/', label: 'Protokół T1' },
+  ];
+
+  return (
+    <header className="fixed top-0 inset-x-0 z-50 bg-brand-black/85 backdrop-blur border-b border-brand-lime/10">
+      <div className="container mx-auto px-6 h-16 flex items-center justify-between gap-6">
+        <a href="/" className="font-heading text-xl font-bold tracking-widest text-white">
+          TIERONE <span className="text-brand-lime">PRO</span>
+        </a>
+        <nav className="hidden md:flex items-center gap-8 text-sm text-gray-200">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="hover:text-brand-lime transition-colors">{l.label}</a>
+          ))}
+          <a href="./ankieta.html" className="font-heading uppercase tracking-wider text-brand-black bg-brand-lime px-4 py-2 rounded hover:shadow-[0_0_20px_rgba(204,255,0,0.45)] transition-shadow">
+            Ankieta
+          </a>
+        </nav>
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden font-heading uppercase tracking-wider text-sm text-brand-lime border border-brand-lime/40 rounded px-3 py-2"
+          aria-expanded={open}
+        >
+          Menu
+        </button>
+      </div>
+      {open && (
+        <nav className="md:hidden border-t border-brand-lime/10 px-6 py-4 flex flex-col gap-4 text-gray-200">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="hover:text-brand-lime">{l.label}</a>
+          ))}
+          <a href="./ankieta.html" className="text-brand-lime">Ankieta rekrutacyjna →</a>
+        </nav>
+      )}
+    </header>
+  );
+};
+
+// Newsletter - 3 ostatnie wydania Protokołu T1
+const MIESIACE = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
+
+const NewsletterTeaser = () => {
+  // newsletter/wydania.json uzupełnia scripts/nowe-wydanie.py; pokazujemy 3 najnowsze
+  const editions = wydania.slice(0, 3).map((w) => {
+    const [y, m, d] = w.data_www.split('-');
+    return {
+      href: `/newsletter/${w.plik}`,
+      badge: w.nr ? `Nr ${w.nr}` : undefined,
+      date: w.nr ? `${d}.${m}.${y}` : `${MIESIACE[Number(m) - 1]} ${y}`,
+      title: w.tytul,
+      lead: w.nr ? w.opis : undefined,
+    };
+  });
+
+  return (
+    <section id="newsletter" className="section bg-black relative overflow-hidden">
+      <div className="absolute inset-0 hud-overlay"></div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="tactical-badge mb-4 inline-block">NEWSLETTER · CO NIEDZIELĘ</span>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-6">
+            PROTOKÓŁ <span className="text-brand-lime text-glow">T1</span>
+          </h2>
+          <p className="text-lg text-gray-300">
+            Jeden list w tygodniu: badanie, co z niego wynika dla Twojego treningu i protokół do sprawdzenia od poniedziałku.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">
+          {editions.map((e) => (
+            <a
+              key={e.title}
+              href={e.href}
+              className="w-full md:w-[calc((100%-3rem)/3)] flex flex-col overflow-hidden rounded transition-transform hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(204,255,0,0.25)]"
+              style={{ background: '#fbf9f3' }}
+            >
+              {/* miniatura maila: ten sam nagłówek co w newsletterze */}
+              <div className="px-5 py-4 flex items-center justify-between" style={{ background: '#0a0a0a', borderBottom: '4px solid #CCFF00' }}>
+                <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 18, color: '#fff' }}>
+                  TierOne <em style={{ color: '#CCFF00', fontWeight: 600 }}>Pro</em>
+                </span>
+                {e.badge && <span className="text-[11px] font-bold tracking-[2px] uppercase px-2 py-1" style={{ background: '#CCFF00', color: '#0a0a0a' }}>{e.badge}</span>}
+              </div>
+              <div className="p-5 flex flex-col gap-3 flex-1">
+                <span className="text-[11px] font-bold tracking-[2px] uppercase" style={{ color: '#6b6b6b' }}>{e.date}</span>
+                <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 21, lineHeight: 1.25, color: '#0a0a0a', textTransform: 'none', letterSpacing: 'normal' }}>{e.title}</h3>
+                {e.lead && <p style={{ fontFamily: "'Newsreader', Georgia, serif", fontSize: 16, lineHeight: 1.5, color: '#3a3a3a' }}>{e.lead}</p>}
+                <span className="text-[11px] font-bold tracking-[2px] uppercase mt-auto pt-2" style={{ color: '#0a0a0a', borderTop: '1px solid #d9d1be' }}>Czytaj list →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-4 justify-center mt-12">
+          <a href="/newsletter/#zapis" className="btn-neon">ZAPISZ SIĘ NA PROTOKÓŁ T1</a>
+          <a href="/newsletter/" className="font-heading uppercase tracking-wider text-brand-lime border border-brand-lime rounded px-6 py-3 hover:bg-brand-lime/10">
+            Wszystkie wydania
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Main App Component
 const App = () => {
   return (
     <>
+      <SiteNav />
       <Hero />
       <Problem />
-      <Solution />
-      <Authority />
-      <CaseStudy />
+      <div id="program"><Solution /></div>
+      <div id="o-mnie"><Authority /></div>
+      <div id="opinie"><CaseStudy /></div>
+      <NewsletterTeaser />
       <FAQ />
       <FinalCTA />
       <Footer />

@@ -1,0 +1,44 @@
+/* Protokół T1 – archiwum i strona podziękowania.
+   Kolory i fonty 1:1 z maili w MailerLite (wydanie z 18.10.2026). */
+:root{--page:#f6f3ec;--paper:#fbf9f3;--ink:#0a0a0a;--ink2:#1b1d1a;--muted:#6b6b6b;--line:#d9d1be;--lime:#CCFF00;--lime-dark:#7DB300}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink2);font-family:'Newsreader',Georgia,serif}
+a{color:var(--ink)}
+.col{max-width:760px;margin:0 auto}
+.cap{font-family:'Inter',Arial,sans-serif;font-size:11px;line-height:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.mast{background:var(--ink);border-bottom:4px solid var(--lime)}
+.mast .in{padding:22px 40px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:24px;color:#fff;text-decoration:none}
+.logo em{color:var(--lime);font-weight:600}
+.mast a.cap{color:#cfcfcf;text-decoration:none}
+.mast a.cap:hover{color:var(--lime)}
+.paper{background:var(--paper);padding:56px 40px}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(40px,8vw,60px);line-height:1.08;font-weight:800;margin:14px 0 18px;color:var(--ink)}
+h1 em{font-weight:700}
+.lead{font-size:20px;line-height:1.6;margin:0}
+.month{margin:48px 0 0;padding-bottom:12px;border-bottom:2px solid var(--ink);color:var(--muted)}
+.ed{display:flex;gap:22px;align-items:flex-start;padding:26px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.ed:hover .t{color:var(--lime-dark)}
+.num{flex:0 0 auto;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--ink);padding-bottom:6px;border-bottom:4px solid var(--lime-dark)}
+.t{display:block;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:25px;line-height:1.25;color:var(--ink)}
+.d{display:block;font-size:17px;line-height:1.55;color:#3a3a3a;margin-top:8px}
+.meta{display:block;margin-top:10px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:20px}
+.old{display:block;background:#fff;border:1px solid var(--line);padding:20px 22px;text-decoration:none;color:inherit}
+.old:hover{border-color:var(--ink)}
+.old .t{font-size:19px;margin-top:8px}
+.signup{background:var(--ink);padding:34px 32px;margin-top:56px}
+.signup-h{margin:0 0 20px;font-family:'Playfair Display',Georgia,serif;font-size:28px;line-height:1.25;font-weight:700;color:#fff}
+.signup-h em{color:var(--lime)}
+.signup-l{display:block;margin:0 0 8px;font:600 13px 'Inter',Arial,sans-serif;color:#fff}
+.signup input[type=email]{width:100%;min-height:50px;padding:0 16px;font:16px 'Inter',Arial,sans-serif;border:1px solid #3a3a3a;border-radius:6px;background:#fff;color:var(--ink)}
+.signup button{width:100%;min-height:52px;margin-top:10px;border:0;border-radius:6px;background:var(--lime);color:var(--ink);font:700 15px 'Inter',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.signup button:hover{box-shadow:0 0 22px rgba(204,255,0,.55)}
+.signup button:disabled{opacity:.6;cursor:wait}
+.signup-zgoda{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font:12px/18px 'Inter',Arial,sans-serif;color:#9a9a9a}
+.signup-zgoda input{width:16px;height:16px;margin:1px 0 0;flex:0 0 auto;accent-color:#CCFF00}
+.signup-zgoda a{color:var(--lime)}
+.signup-blad{margin:12px 0 0;font:600 14px 'Inter',Arial,sans-serif;color:#ff8a80}
+.foot{background:var(--ink);padding:26px 40px;text-align:center}
+.foot a{color:var(--lime);text-decoration:none;margin:0 8px;white-space:nowrap}
+@media (max-width:660px){.mast .in,.paper,.foot{padding-left:22px;padding-right:22px}.num{font-size:34px}.t{font-size:21px}}
