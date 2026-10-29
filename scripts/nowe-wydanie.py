@@ -177,6 +177,7 @@ def strona_wydania(h, w):
     h = re.sub(r'\s(?:builder-link-id|data-link-id|data-link-type)="[^"]*"', "", h)
     h = przenies_obrazki(h)
     h = h.replace("</body>", '<script src="/newsletter/zapis.js" defer></script>\n</body>', 1)
+    h = h.replace("</head>", '<script src="/ph.js"></script>\n</head>', 1)
 
     zostalo = re.findall(r"\{\$[a-z_]+\}|mailerlite\.com|mlcdn\.com", h)
     if zostalo:

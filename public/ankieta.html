@@ -28,6 +28,7 @@
     }
   </script>
   <link rel="stylesheet" href="./index.css">
+    <script src="/ph.js"></script>
 </head>
 <body class="bg-brand-black text-white min-h-screen">
   <div class="container mx-auto px-6 py-12">
@@ -366,6 +367,7 @@
 
         if (response.ok) {
           // Success
+          window.phTrack('survey_submitted');
           successMessage.classList.remove('hidden');
           form.reset();
 

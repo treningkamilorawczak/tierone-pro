@@ -28,6 +28,7 @@
     }
   </script>
   <link rel="stylesheet" href="./index.css">
+    <script src="/ph.js"></script>
 </head>
 <body class="bg-brand-black text-white min-h-screen flex flex-col">
   <!-- Main Content -->
@@ -130,6 +131,7 @@
     if (email) {
       console.log('Zapisany email:', email);
     }
+    window.phTrack('newsletter_subscribed', { source: 'strona-glowna' });
   </script>
 </body>
 </html>
