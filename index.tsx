@@ -779,6 +779,11 @@ const SiteNav = () => {
     { href: '/#opinie', label: 'Opinie' },
     { href: '/newsletter/', label: 'Protokół T1' },
   ];
+  // przyciski jak na trening-sswb.pl: panel CoachGuru + konsultacja w Calendly
+  const PANEL_URL = 'https://dash.coachguru.app/user/login';
+  const CALENDLY_URL = 'https://calendly.com/trening-kamilorawczak/30min';
+  const btnOutline = 'font-heading uppercase tracking-wider text-brand-lime border border-brand-lime/60 px-4 py-2 rounded hover:bg-brand-lime/10 transition-colors whitespace-nowrap';
+  const btnSolid = 'font-heading uppercase tracking-wider text-brand-black bg-brand-lime px-4 py-2 rounded hover:shadow-[0_0_20px_rgba(204,255,0,0.45)] transition-shadow whitespace-nowrap';
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-brand-black/85 backdrop-blur border-b border-brand-lime/10">
@@ -786,28 +791,35 @@ const SiteNav = () => {
         <a href="/" className="font-heading text-xl font-bold tracking-widest text-white">
           TIERONE <span className="text-brand-lime">PRO</span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-gray-200">
+        <nav className="hidden lg:flex items-center gap-8 text-sm text-gray-200">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-brand-lime transition-colors">{l.label}</a>
           ))}
-          <a href="./ankieta.html" className="font-heading uppercase tracking-wider text-brand-black bg-brand-lime px-4 py-2 rounded hover:shadow-[0_0_20px_rgba(204,255,0,0.45)] transition-shadow">
-            Ankieta
-          </a>
+          <div className="flex items-center gap-2">
+            <a href={PANEL_URL} target="_blank" rel="noopener" className={btnOutline}>Panel klienta</a>
+            <a href="./ankieta.html" className={btnOutline}>Ankieta</a>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener" className={btnSolid}>Rezerwuj</a>
+          </div>
         </nav>
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden font-heading uppercase tracking-wider text-sm text-brand-lime border border-brand-lime/40 rounded px-3 py-2"
-          aria-expanded={open}
-        >
-          Menu
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener" className={`${btnSolid} text-sm`}>Rezerwuj</a>
+          <button
+            onClick={() => setOpen(!open)}
+            className="font-heading uppercase tracking-wider text-sm text-brand-lime border border-brand-lime/40 rounded px-3 py-2"
+            aria-expanded={open}
+          >
+            Menu
+          </button>
+        </div>
       </div>
       {open && (
-        <nav className="md:hidden border-t border-brand-lime/10 px-6 py-4 flex flex-col gap-4 text-gray-200">
+        <nav className="lg:hidden border-t border-brand-lime/10 px-6 py-4 flex flex-col gap-4 text-gray-200">
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="hover:text-brand-lime">{l.label}</a>
           ))}
+          <a href={PANEL_URL} target="_blank" rel="noopener" className="text-brand-lime">Panel klienta →</a>
           <a href="./ankieta.html" className="text-brand-lime">Ankieta rekrutacyjna →</a>
+          <a href={CALENDLY_URL} target="_blank" rel="noopener" className="text-brand-lime">Rezerwuj konsultację (Calendly) →</a>
         </nav>
       )}
     </header>
