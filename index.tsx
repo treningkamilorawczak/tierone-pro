@@ -80,7 +80,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center fade-in-up">
           {/* Badge */}
           <div className="mb-6">
-            <span className="tactical-badge">TIERONE PRO – ELITE PERFORMANCE SYSTEM</span>
+            <span className="tactical-badge">ELITE PERFORMANCE SYSTEM</span>
           </div>
 
           {/* Main Headline */}
@@ -643,6 +643,7 @@ const CaseStudy = () => (
 
         </div>
       </div>
+      <p className="testimonials-hint text-center text-sm text-gray-400 mt-4 font-mono uppercase tracking-widest">Przesuń palcem →</p>
     </div>
   </section>
 );

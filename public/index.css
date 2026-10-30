@@ -466,6 +466,7 @@ input[type="email"]:focus {
 }
 
 /* === TESTIMONIALS — MARQUEE === */
+.testimonials-hint { display: none; }
 .testimonials-marquee {
   position: relative;
   overflow: hidden;
@@ -496,15 +497,25 @@ input[type="email"]:focus {
   100% { transform: translateX(calc(-50% - 16px)); }
 }
 
-@media (max-width: 700px) {
-  .testimonials-track > div { flex: 0 0 320px; }
-  .testimonials-track { animation-duration: 50s; gap: 20px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .testimonials-track { animation: none; transform: none; }
-  .testimonials-marquee { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-  .testimonials-track > div { scroll-snap-align: start; }
+/* Telefon / dotyk / mniej ruchu: bez automatu, przewijanie palcem karta po karcie */
+@media (max-width: 700px), (hover: none), (prefers-reduced-motion: reduce) {
+  .testimonials-marquee {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .testimonials-marquee::-webkit-scrollbar { display: none; }
+  .testimonials-track { animation: none; transform: none; gap: 16px; padding: 0 4px; }
+  .testimonials-track > div[aria-hidden="true"] { display: none; }
+  .testimonials-track > div { flex: 0 0 min(80vw, 340px); scroll-snap-align: center; }
+  .testimonials-hint { display: block; }
+  .testimonials-track { align-items: flex-start; }
+  .testimonials-track > div { padding: 1.5rem; }
+  .testimonials-track > div > p.text-xl { font-size: 1.05rem; line-height: 1.5; }
 }
 
 /* Bebas Neue ma tylko jedną grubość - bez sztucznego pogrubienia z font-bold */
