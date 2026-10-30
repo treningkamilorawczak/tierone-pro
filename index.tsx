@@ -412,7 +412,7 @@ const Authority = () => (
         {/* Right: Text Content */}
         <div>
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">
-            KAMIL ORAWCZAK — Trener przygotowania motorycznego liderów
+            KAMIL ORAWCZAK — Trener przygotowania motorycznego
           </h2>
           <p className="text-xl text-gray-400 mb-6">
             <em>Magister Wychowania Fizycznego · twórca systemu TIER ONE PRO · oficjalny partner przygotowań SSWB</em>
@@ -451,7 +451,7 @@ const CaseStudy = () => (
       <div className="text-center mb-12">
         <span className="tactical-badge mb-4 inline-block">STUDIA PRZYPADKÓW</span>
         <h2 className="font-heading text-3xl md:text-5xl font-bold">
-          OPINIE <span className="text-brand-lime text-glow">LIDERÓW</span>
+          <span className="text-brand-lime text-glow">OPINIE</span>
         </h2>
       </div>
 
