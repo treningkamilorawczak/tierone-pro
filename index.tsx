@@ -782,16 +782,21 @@ const SiteNav = () => {
   // przyciski jak na trening-sswb.pl: panel CoachGuru + konsultacja w Calendly
   const PANEL_URL = 'https://dash.coachguru.app/user/login';
   const CALENDLY_URL = 'https://calendly.com/trening-kamilorawczak/30min';
-  const btnOutline = 'font-heading uppercase tracking-wider text-brand-lime border border-brand-lime/60 px-4 py-2 rounded hover:bg-brand-lime/10 transition-colors whitespace-nowrap';
-  const btnSolid = 'font-heading uppercase tracking-wider text-brand-black bg-brand-lime px-4 py-2 rounded hover:shadow-[0_0_20px_rgba(204,255,0,0.45)] transition-shadow whitespace-nowrap';
+  const btnOutline = 'font-heading text-lg uppercase tracking-wider text-brand-lime border border-brand-lime/60 px-4 py-2 rounded hover:bg-brand-lime/10 transition-colors whitespace-nowrap';
+  const btnSolid = 'font-heading text-lg uppercase tracking-wider text-brand-black bg-brand-lime px-4 py-2 rounded hover:shadow-[0_0_20px_rgba(204,255,0,0.45)] transition-shadow whitespace-nowrap';
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-brand-black/85 backdrop-blur border-b border-brand-lime/10">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between gap-6">
-        <a href="/" className="font-heading text-xl font-bold tracking-widest text-white">
-          TIERONE <span className="text-brand-lime">PRO</span>
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between gap-6">
+        {/* logo jak na trening-sswb.pl: Trenuj Profesjonalnie × marka */}
+        <a href="/" className="flex items-center gap-3 shrink-0">
+          <img src="/trenuj-profesjonalnie.png" alt="Trenuj Profesjonalnie" className="h-11 md:h-14 w-auto" />
+          <span className="hidden sm:inline font-heading text-xl text-brand-lime/70">×</span>
+          <span className="hidden sm:inline font-heading text-xl md:text-2xl tracking-widest text-white">
+            TIERONE <span className="text-brand-lime">PRO</span>
+          </span>
         </a>
-        <nav className="hidden lg:flex items-center gap-8 text-sm text-gray-200">
+        <nav className="hidden lg:flex items-center gap-8 font-mono uppercase text-xs tracking-[0.15em] text-gray-300">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-brand-lime transition-colors">{l.label}</a>
           ))}
@@ -802,7 +807,7 @@ const SiteNav = () => {
           </div>
         </nav>
         <div className="lg:hidden flex items-center gap-2">
-          <a href={CALENDLY_URL} target="_blank" rel="noopener" className={`${btnSolid} text-sm`}>Rezerwuj</a>
+          <a href={CALENDLY_URL} target="_blank" rel="noopener" className={btnSolid}>Rezerwuj</a>
           <button
             onClick={() => setOpen(!open)}
             className="font-heading uppercase tracking-wider text-sm text-brand-lime border border-brand-lime/40 rounded px-3 py-2"

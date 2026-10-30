@@ -9,7 +9,7 @@
 body {
   background-color: #0a0a0a;
   color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   overflow-x: hidden;
 }
 
@@ -108,7 +108,7 @@ body {
   background: #CCFF00;
   color: #0a0a0a;
   font-weight: 700;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 16px 48px;
@@ -158,8 +158,8 @@ body {
 
 /* Heading Styles */
 h1, h2, h3 {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -195,7 +195,7 @@ h1, h2, h3 {
 
 /* Data/Stats Counter */
 .stat-number {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 4rem;
   font-weight: 700;
   color: #CCFF00;
@@ -505,4 +505,17 @@ input[type="email"]:focus {
   .testimonials-track { animation: none; transform: none; }
   .testimonials-marquee { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .testimonials-track > div { scroll-snap-align: start; }
+}
+
+/* Bebas Neue ma tylko jedną grubość - bez sztucznego pogrubienia z font-bold */
+.font-heading,
+h1:not([style]), h2:not([style]), h3:not([style]),
+.btn-neon, .stat-number {
+  font-weight: 400 !important;
+}
+
+/* Etykiety i menu w DM Mono, jak na trening-sswb.pl */
+.tactical-badge {
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.15em;
 }
